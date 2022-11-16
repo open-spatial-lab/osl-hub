@@ -2,7 +2,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
 	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -94,20 +93,5 @@ button:focus:not(:focus-visible) {
 @media (min-width: 720px) {
 	h1 {
 		font-size: 2.4rem;
-	}
-}
-
-
-.mobile-only {
-	visibility: auto;
-}
-
-.bx--side-nav.bx--side-nav--expanded~.bx--content {
-	margin-left: 0 !important;
-}
-@media (min-width: 1055px) {
-	.mobile-only {
-		visibility: hidden;
-		max-width:0 !important;
 	}
 }

@@ -3,10 +3,8 @@ import type { UserConfig } from 'vite';
 
 const config: UserConfig = {
 	plugins: [sveltekit()],
-	
-	ssr: {
-        noExternal: []
-	},
+
+	ssr: { noExternal: ['@popperjs/core'] },
 	optimizeDeps: {
 		entries: []
 	}

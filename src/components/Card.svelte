@@ -2,21 +2,8 @@
 	export let href: string;
 </script>
 
-<div class="card w-96 bg-gray-300 m-2 p-2">
-    <a class="link-primary" {href}>
-        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-        <div class="card-body">
+<div class="w-96 bg-gray-300 m-2 transition-all shadow-none translate-y-0 hover:shadow-xl hover:-translate-y-1">
+    <a class="p-4 w-full text-center block no-underline font-bold font-500" {href}>
         <slot />
-        </div>
     </a>
-  </div>
-
-<style>
-    .card-styles * {
-        min-width:20em;
-        min-height:20em;
-        /* aspect-ratio: 1; */
-        width: fit-content;
-        height:fit-content;
-    }
-</style>
+</div>

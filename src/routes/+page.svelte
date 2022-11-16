@@ -14,7 +14,7 @@
 <section>
 	{#each databases as database}
 		<Card href={`/db/${database.id}`}>
-			<h3 class="h1">{database.child_database.title}</h3>
+			{database.child_database.title}
 		</Card>
 	{/each}
 </section>
