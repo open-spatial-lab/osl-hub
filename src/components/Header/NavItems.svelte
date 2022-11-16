@@ -3,13 +3,13 @@
 </script>
 
 <NavItem>
-	<NavLink href="/">home</NavLink>
+	<NavLink href="/">Home</NavLink>
 </NavItem>
 <NavItem>
-	<NavLink href="/about">about</NavLink>
+	<NavLink href="/about">About</NavLink>
 </NavItem>
 <NavItem>
-	<NavLink href="/about">contact</NavLink>
+	<NavLink href="/about">Contact</NavLink>
 </NavItem>
 <NavItem>
 	<NavLink href="https://github.com/open-spatial-lab"><i class="bi bi-github"></i></NavLink>

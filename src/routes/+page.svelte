@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Card from '../components/Card.svelte';
+	import Card from '../components/DatabaseCard.svelte';
 
 	import type { HomePageSchema } from '../types/block';
 	export let data: HomePageSchema;
@@ -11,7 +11,7 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
+<section class="align-items-start p-4">
 	{#each databases as database}
 		<Card href={`/db/${database.id}`}>
 			{database.child_database.title}

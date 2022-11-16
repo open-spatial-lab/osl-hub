@@ -4,10 +4,10 @@
 	import './styles.css';
 </script>
 
-<div class="app">
+<div class="app d-flex flex-column">
 	<Header />
 
-	<main>
+	<main class="flex-grow-1">
 		<slot />
 	</main>
 
