@@ -6,7 +6,6 @@
 
 	export let data: DatabaseResponse;
 	const title = data?.page?.properties?.Name?.title?.[0]?.plain_text;
-	console.log(data)
 </script>
 
 <Container class="py-4 px-4" fluid>
