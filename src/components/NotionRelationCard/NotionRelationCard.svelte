@@ -15,7 +15,7 @@
 {:then content}
 	<Card body class="mw-50">
 		{#if content?.page?.properties?.Name?.title?.[0]?.plain_text}
-			<a href={`/page/${content.page.id}`} class="d-block ">
+			<a href={`/page/${id}`} class="d-block ">
 				<b> {content.page.properties.Name.title[0].plain_text}</b></a
 			>
 		{/if}
