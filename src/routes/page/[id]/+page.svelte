@@ -4,43 +4,46 @@
 	import Breadcrumbs from '../../../components/Breadcrumbs.svelte';
 	import type { DatabaseResponse } from './types';
 
-	import NotionBlocks from '../../../components/NotionBlocks'; 
+	import NotionBlocks from '../../../components/NotionBlocks';
+	import NotionRelations from '../../../components/NotionRelations/NotionRelations.svelte';
 
 	export let data: DatabaseResponse;
-	const title = data?.page?.properties?.Name?.title?.[0]?.plain_text;
-</script>
+	$: title = data?.page?.properties?.Name?.title?.[0]?.plain_text;
+	$: relationProperties = parseRelations(data?.page?.properties);
 
+	function parseRelations(properties: any) {
+		if (!properties) return [];
+		const relations = [];
+		for (const [key, value] of Object.entries(properties)) {
+			if (value.type === "relation") {
+				relations.push({
+					name: key,
+					relations: value.relation
+				});
+			}
+		}
+		return relations;
+	}
+</script>
+<svelte:head>
+   <title>{title}</title>
+</svelte:head>
 <Container class="py-4 px-4" fluid>
 	<h1 class="fs-01 text-start">{title}</h1>
 	{#if 'parent' in data}
 		<Breadcrumbs steps={data.parent} />
 	{/if}
 	{#if 'content' in data}
- 		<NotionBlocks blocks={data?.content?.results} />
-		<!-- {#each data.content.results as block}
-			{#if block.image}
-				{#if block.image.type === 'external'}
-					<figure>
-						<img src={block.image.external.url} alt={block.image.caption} />
-						{#if block.image.caption}
-							<figcaption>{block.image.caption}</figcaption>
-						{/if}
-					</figure>
-				{/if}
-			{:else if block.paragraph && block.paragraph.rich_text.length}
-					{#each block.paragraph.rich_text as textBlock}
-						{#if textBlock.type === 'text'}
-							<p>{textBlock.text.content}</p>
-						{/if}
-					{/each}
-			{/if}
-		{/each} -->
+		<NotionBlocks blocks={data?.content?.results} />
 	{/if}
-
+	<NotionRelations properties={relationProperties} />
 	<Alert color="light" class="d-inline-block">
 		<h4 class="alert-heading">See something missing?</h4>
-		OSL hub is an evolving content database. If you've spotted an error or want to contribute, please go to our  
-		<a href={`https://openspatial.notion.site/${data.page.url.split('https://www.notion.so/')}`} class="alert-link">notion site</a> and comment to suggest changes.
+		OSL hub is an evolving content database. If you've spotted an error or want to contribute, please
+		go to our
+		<a
+			href={`https://openspatial.notion.site/${data.page.url.split('https://www.notion.so/')}`}
+			class="alert-link">notion site</a
+		> and comment to suggest changes.
 	</Alert>
-
 </Container>

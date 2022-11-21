@@ -16,8 +16,12 @@
 			};
 		});
 	}
-	const title = 'parent' in data ? data.parent[data.parent.length - 1].name : 'Home';
+	$: title = 'parent' in data ? data.parent[data.parent.length - 1].name : 'Home';
 </script>
+
+<svelte:head>
+   <title>{title}</title>
+</svelte:head>
 
 <Container fluid class="p-4">
 	<h1 class="fs-01 text-start">{title}</h1>

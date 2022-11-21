@@ -11,7 +11,7 @@ import type {
 import { SECRET_NOTION_KEY, SECRET_ROOT_PAGE, SECRET_ENV } from '$env/static/private';
 import Keyv from 'keyv';
 
-const TTL_MINS = SECRET_ENV === "development" ? 0 : 60;
+const TTL_MINS = SECRET_ENV === "development" ? 0.01 : 60;
 const TTL_MS = TTL_MINS * 60 * 1000;
 const endpointCache = new Keyv({ namespace: 'notion-cache', ttl: TTL_MS });
 
