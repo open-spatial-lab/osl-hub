@@ -25,9 +25,11 @@
 		return relations;
 	}
 </script>
+
 <svelte:head>
    <title>{title}</title>
 </svelte:head>
+
 <Container class="py-4 px-4" fluid>
 	<h1 class="fs-01 text-start">{title}</h1>
 	{#if 'parent' in data}

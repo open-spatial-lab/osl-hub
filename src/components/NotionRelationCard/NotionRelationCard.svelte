@@ -6,7 +6,6 @@
 	async function fetchPage(id: string) {
 		const res = await fetch(`http://localhost:5173/api/notion-page/${id}`);
 		const data = await res.json();
-		console.log(data);
 		return data;
 	}
 </script>
