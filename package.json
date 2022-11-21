@@ -41,6 +41,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@notion-stuff/blocks-html-parser": "^6.0.0",
+		"@notion-stuff/blocks-markdown-parser": "^6.0.0",
+		"highlight.js": "^11.6.0",
+		"marked": "^4.2.3",
 		"sveltestrap": "^5.10.0"
 	}
 }

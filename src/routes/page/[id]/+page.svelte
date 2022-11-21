@@ -4,6 +4,8 @@
 	import Breadcrumbs from '../../../components/Breadcrumbs.svelte';
 	import type { DatabaseResponse } from './types';
 
+	import NotionBlocks from '../../../components/NotionBlocks'; 
+
 	export let data: DatabaseResponse;
 	const title = data?.page?.properties?.Name?.title?.[0]?.plain_text;
 </script>
@@ -14,7 +16,8 @@
 		<Breadcrumbs steps={data.parent} />
 	{/if}
 	{#if 'content' in data}
-		{#each data.content.results as block}
+ 		<NotionBlocks blocks={data?.content?.results} />
+		<!-- {#each data.content.results as block}
 			{#if block.image}
 				{#if block.image.type === 'external'}
 					<figure>
@@ -31,7 +34,7 @@
 						{/if}
 					{/each}
 			{/if}
-		{/each}
+		{/each} -->
 	{/if}
 
 	<Alert color="light" class="d-inline-block">
