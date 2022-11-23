@@ -28,6 +28,7 @@
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"keyv": "^4.5.2",
+		"next-auth": "latest",
 		"postcss": "^8.4.19",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.6.2",
@@ -37,14 +38,18 @@
 		"svelte-preprocess": "^4.10.7",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
-		"vite": "^3.1.0"
+		"vite": "^3.1.0",
+		"vite-plugin-mkcert": "^1.10.1"
 	},
 	"type": "module",
 	"dependencies": {
 		"@notion-stuff/blocks-html-parser": "^6.0.0",
 		"@notion-stuff/blocks-markdown-parser": "^6.0.0",
+		"clsx": "^1.2.1",
+		"cookie": "^0.5.0",
 		"highlight.js": "^11.6.0",
 		"marked": "^4.2.3",
+		"sk-auth": "^0.4.1",
 		"sveltestrap": "^5.10.0"
 	}
 }

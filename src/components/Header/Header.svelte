@@ -1,12 +1,6 @@
 <script lang="ts">
-	import {
-		Collapse,
-		Navbar,
-		NavbarToggler,
-		NavbarBrand,
-		Nav,
-		Styles
-	} from 'sveltestrap';
+	import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, Styles } from 'sveltestrap';
+	import LoginDropdown from '../Login/LoginDropdown.svelte';
 	import NavItems from './NavItems.svelte';
 
 	let isOpen = false;
@@ -19,11 +13,12 @@
 	<NavbarBrand href="/" class="me-auto">osl <b>hub</b></NavbarBrand>
 	<NavbarToggler on:click={toggle} class="me-1 d-block d-md-none" />
 	<Collapse {isOpen} navbar>
-	  <Nav navbar>
-		<NavItems />
-	  </Nav>
+		<Nav navbar>
+			<NavItems />
+		</Nav>
 	</Collapse>
 	<Nav class="d-none d-md-flex">
-	  <NavItems />
+		<NavItems />
+		<LoginDropdown />
 	</Nav>
-  </Navbar>
+</Navbar>

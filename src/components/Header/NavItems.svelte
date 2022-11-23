@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { NavItem, NavLink } from 'sveltestrap';
+	import { page } from "$app/stores"
 </script>
 
 <NavItem>
