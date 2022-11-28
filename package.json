@@ -1,55 +1,43 @@
 {
-	"name": "osl-hub",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"test": "playwright test",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
-	},
-	"devDependencies": {
-		"@fontsource/fira-mono": "^4.5.0",
-		"@neoconfetti/svelte": "^1.0.0",
-		"@notionhq/client": "^2.2.2",
-		"@playwright/test": "1.25.0",
-		"@popperjs/core": "^2.11.6",
-		"@sveltejs/adapter-auto": "^1.0.0-next.88",
-		"@sveltejs/adapter-netlify": "^1.0.0-next.84",
-		"@sveltejs/kit": "1.0.0-next.561",
-		"@types/cookie": "^0.5.1",
-		"@typescript-eslint/eslint-plugin": "^5.27.0",
-		"@typescript-eslint/parser": "^5.27.0",
-		"bootstrap-icons": "^1.10.2",
-		"eslint": "^8.16.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^4.0.0",
-		"keyv": "^4.5.2",
-		"next-auth": "latest",
-		"postcss": "^8.4.19",
-		"postcss-load-config": "^4.0.1",
-		"prettier": "^2.6.2",
-		"prettier-plugin-svelte": "^2.7.0",
-		"svelte": "^3.46.0",
-		"svelte-check": "^2.7.1",
-		"svelte-preprocess": "^4.10.7",
-		"tslib": "^2.3.1",
-		"typescript": "^4.7.4",
-		"vite": "^3.1.0",
-		"vite-plugin-mkcert": "^1.10.1"
-	},
-	"type": "module",
-	"dependencies": {
-		"@notion-stuff/blocks-html-parser": "^6.0.0",
-		"@notion-stuff/blocks-markdown-parser": "^6.0.0",
-		"clsx": "^1.2.1",
-		"cookie": "^0.5.0",
-		"highlight.js": "^11.6.0",
-		"marked": "^4.2.3",
-		"sk-auth": "^0.4.1",
-		"sveltestrap": "^5.10.0"
-	}
+  "name": "sveltekit-nextauth",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "HOST=127.0.0.1 PORT=5173 ORIGIN=http://localhost:5173 node ./build",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^1.0.0-next.80",
+    "@sveltejs/adapter-node": "1.0.0-next.96",
+    "@sveltejs/kit": "1.0.0-next.511",
+    "@types/cookie": "^0.5.1",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/parser": "^5.35.1",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-svelte3": "^4.0.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.7.0",
+    "svelte": "^3.49.0",
+    "svelte-check": "^2.8.1",
+    "svelte-preprocess": "^4.10.7",
+    "tslib": "^2.4.0",
+    "typescript": "~4.8.2",
+    "vite": "^3.1.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "cookie": "0.5.0",
+    "next-auth": "latest"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false
+  }
 }
