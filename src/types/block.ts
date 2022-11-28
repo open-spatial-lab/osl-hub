@@ -1,0 +1,1 @@
+export type HomePageSchema = any
