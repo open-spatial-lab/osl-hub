@@ -1,50 +1,7 @@
-<script lang="ts">
-	import Card from '../components/DatabaseCard.svelte';
-
-	import type { HomePageSchema } from '../types/block';
-	export let data: HomePageSchema;
-	const { databases } = data;
-</script>
-
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<section class="align-items-start p-4">
-	{#each databases as database}
-		<Card href={`/db/${database.id}`}>
-			{database.child_database.title}
-		</Card>
-	{/each}
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+<h1>SvelteKit + NextAuth.js Example</h1>
+<p>
+  This is an example site to demonstrate how to use <a
+    href="https://kit.svelte.dev/">SvelteKit</a
+  >
+  with <a href="https://next-auth.js.org">NextAuth.js</a> for authentication.
+</p>
