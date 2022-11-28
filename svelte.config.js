@@ -8,7 +8,9 @@ const config = {
     adapter: adapter()
   },
   preprocess: [
-    preprocess(),
+    preprocess({
+      ignore: ["src/lib/**", "src/routes/api/**"],
+    }),
   ],
 };
 
