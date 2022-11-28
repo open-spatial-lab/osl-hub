@@ -4,22 +4,16 @@ import type { NextAuthAction, NextAuthOptions } from "next-auth/core/types"
 import type { OutgoingResponse as NextAuthResponse } from "next-auth/core"
 import { NextAuthHandler } from "next-auth/core"
 import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from 'next-auth/providers/google'
-
 import cookie from "cookie"
 import {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
-  GOOGLE_CLIENT_SECRET,
-  GOOGLE_CLIENT_ID,
   NEXTAUTH_SECRET,
 } from "$env/static/private"
 import { PUBLIC_NEXTAUTH_URL } from "$env/static/public"
 
 // @ts-expect-error import is exported on .default during SSR
 const github = GithubProvider?.default || GithubProvider
-// @ts-expect-error import is exported on .default during SSR
-const google = GoogleProvider?.default || GoogleProvider
 
 export const options: NextAuthOptions = {
   providers: [
@@ -27,10 +21,6 @@ export const options: NextAuthOptions = {
       clientId: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
     }),
-    google({
-      clientId: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
-    })
   ],
 }
 
