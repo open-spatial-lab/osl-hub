@@ -2,7 +2,7 @@
   "name": "sveltekit-nextauth",
   "private": true,
   "version": "0.0.1",
-	"type": "module",
+  "type": "module",
   "scripts": {
     "dev": "npm run prebuild && vite dev",
     "build": "npm run prebuild && vite build",
@@ -35,10 +35,13 @@
     "vite": "^3.1.0"
   },
   "dependencies": {
+    "@notion-stuff/blocks-html-parser": "^6.0.0",
     "@notion-stuff/blocks-markdown-parser": "^6.0.0",
     "@notionhq/client": "^2.2.2",
     "cookie": "0.5.0",
+    "highlight.js": "^11.7.0",
     "keyv": "^4.5.2",
+    "marked": "^4.2.3",
     "next-auth": "latest",
     "postcss": "^8.4.19",
     "postcss-load-config": "^4.0.1",
