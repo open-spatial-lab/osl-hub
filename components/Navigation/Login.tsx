@@ -13,7 +13,7 @@ export const LoginButtton: React.FC = () => {
         <DropdownMenu.Trigger asChild className={clsx(styles.menuTrigger)}>
           <button aria-label="Customise options">
             <Avatar.Root className="AvatarRoot">
-              {session.user.image ? (
+              {session.user?.image ? (
                 <Avatar.Image
                   className="AvatarImage"
                   src={session?.user?.image}

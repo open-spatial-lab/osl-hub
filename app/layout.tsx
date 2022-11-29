@@ -7,6 +7,7 @@ import '../styles/bootstrap-utils.css';
 import "../styles/spectrum.css";
 import "../styles/normalize.css";
 import "../styles/globals.css";
+import { LayoutWrapper } from "../components/LayoutWrapper";
 
 export default function RootLayout({
   children,
@@ -17,11 +18,15 @@ export default function RootLayout({
     <html>
       <head />
       <body>
+        <LayoutWrapper>
         <Providers>
-          <Navigation />
-          {children}
-          <Footer />
+          <div>
+            <Navigation />
+            {children}
+          </div>
+          {/* <Footer /> */}
         </Providers>
+      </LayoutWrapper>
       </body>
     </html>
   );

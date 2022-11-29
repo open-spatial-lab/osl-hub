@@ -110,19 +110,23 @@ class NotionClient {
 			let parent: ParentBreadcrumbSpec[] = [
 				{
 					id: page.id,
+					// @ts-ignore
 					name: page?.properties?.Name?.title?.[0]?.plain_text || 'Unknown',
 					type: 'page'
 				}
 			];
-
+			
 			const database =
-				page?.parent?.type === 'database_id'
-					? await this.retreiveDatabase(page.parent.database_id)
-					: undefined;
-
+			// @ts-ignore
+			page?.parent?.type === 'database_id'
+			// @ts-ignore
+			? await this.retreiveDatabase(page.parent.database_id)
+			: undefined;
+			
 			if (database) {
 				parent.unshift({
 					id: database.id,
+					// @ts-ignore
 					name: database?.title?.[0]?.plain_text || 'Unknown',
 					type: 'db'
 				});

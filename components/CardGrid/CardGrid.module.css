@@ -1,0 +1,29 @@
+.cardGrid {
+    columns: 2;
+    column-gap: 0.5rem;
+}
+.cardGrid * {
+  margin-block-start: 0;
+}
+
+@media (min-width: 768px) {
+    .cardGrid {
+        columns: 3;
+    }
+}
+
+@media (min-width: 1024px) {
+    .cardGrid {
+        columns: 4;
+    }
+}
+@media (min-width: 1440px) {
+    .cardGrid {
+        columns: 5;
+    }
+}
+@media (min-width: 1920px) {
+    .cardGrid {
+        columns: 8;
+    }
+}
