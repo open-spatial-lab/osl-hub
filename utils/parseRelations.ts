@@ -1,4 +1,4 @@
-export function parseRelations(properties: any) {
+export function parseRelations(properties: { [key: string]: { type: string, relation: any[] } }) {
     if (!properties) return [];
     const relations = [];
     for (const [key, value] of Object.entries(properties)) {

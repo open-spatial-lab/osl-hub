@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export default async function IndexPage() {
   const data = await notion.getFullIndex();
+  // @ts-ignore
   let letters = data.map(d => d?.properties?.Name?.title?.[0]?.text?.content?.slice(0,1)).filter(Boolean).filter(onlyUnique)
   
   return (
@@ -11,6 +12,7 @@ export default async function IndexPage() {
       <main className={clsx("px-4")}>
         <section className="">
           {data.map((d) => {
+            // @ts-ignore
             const title = d?.properties?.Name?.title?.[0]?.text?.content
             const firstLetter = title && title.slice(0,1)
             return <>

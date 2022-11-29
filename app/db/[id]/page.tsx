@@ -29,10 +29,12 @@ export default async function DbPage({ params }: DbPageProps) {
             {results.map((item, i) => (
               <Card.Wrapper key={item.id}>
                   <Card.Header>
+                    {/* @ts-ignore */}
                     {item?.properties?.Name?.title?.[0]?.plain_text ||
                       "Hub Entry"}
                   </Card.Header>
                   <p className="p-3">
+                      {/* @ts-ignore */}
                     {item?.properties?.['Short Description']?.rich_text?.[0]?.plain_text || ""}
                   </p>
                 <Link href={`/page/${item.id}`}>

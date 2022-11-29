@@ -10,7 +10,7 @@ export function BreadCrumbs({
 }: BreadCrumbsProps) {
   return <div className="d-flex">
     {showHome && <BreadCrumbStep step={{type:null, id:"", name: "Home"}} />}
-    {steps.map(step => <BreadCrumbStep step={step} />)}
+    {steps.map((step, i) => <BreadCrumbStep key={i} step={step} />)}
   </div>;
 }
 

@@ -19,7 +19,7 @@ export default async function DbPage({ params }: DbPageProps) {
 
   const { parent, page, content } = await notion.getPageContent(id);
   const title = parent?.length ? parent[parent.length - 1].name : "Home";
-  const relations = parseRelations(page)
+  // const relations = parseRelations(page)
 
   return (
     <div>

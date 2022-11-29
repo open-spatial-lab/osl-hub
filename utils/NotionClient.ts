@@ -166,6 +166,7 @@ class NotionClient {
 			})
 		);
 		const merged = data.map(d => d.results).flat()
+		// @ts-ignore
 			.sort((a,b) => a?.properties?.Name?.title?.[0]?.text?.content?.localeCompare(b?.properties?.Name?.title?.[0]?.text?.content));
 		return merged
 	} 
