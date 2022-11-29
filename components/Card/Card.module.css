@@ -1,0 +1,15 @@
+.card {
+    margin: 0;
+    border-bottom: 2px solid var(--gray-400);
+    margin-bottom:1rem;
+    margin-block-start: 0;
+    display: block;
+}
+
+.header {
+    background-color: var(--gray-200);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+}
