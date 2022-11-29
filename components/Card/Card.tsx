@@ -11,7 +11,7 @@ export function Card({
   style={},
 }: React.PropsWithChildren<CardProps>) {
   return (
-    <div className={clsx(styles.card)}>
+    <div className={clsx(styles.card, className && className)} style={style}>
       {children}
     </div>
   );

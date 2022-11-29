@@ -24,7 +24,7 @@ export default async function Home() {
           OSL Hub is a place where you can find all the resources you need to
           learn and grow as a developer.
         </p>
-        <section className="px-4">
+        <section>
           {data.map((item, i) => (
             <Card>
               <p>{item.child_database.title}</p>
