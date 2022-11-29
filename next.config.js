@@ -4,11 +4,12 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     appDir: true,
+    runtime: "experimental-edge",
   },
   baseUrl: ".",
   paths: {
     "@/utils": ["./utils"],
-    "@/components": ["./components"]
+    "@/components": ["./components"],
   },
 };
 
