@@ -1,9 +1,11 @@
 .cardGrid {
-    columns: 2;
-    column-gap: 0.5rem;
+    columns: 1;
+    column-gap: 1rem;
+    padding: 1rem 0;
 }
+
 .cardGrid * {
-  margin-block-start: 0;
+    break-inside: avoid;
 }
 
 @media (min-width: 768px) {
@@ -19,7 +21,7 @@
 }
 @media (min-width: 1440px) {
     .cardGrid {
-        columns: 5;
+        columns: 6;
     }
 }
 @media (min-width: 1920px) {

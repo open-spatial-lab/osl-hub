@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@notion-stuff/blocks-html-parser": "^6.0.0",
+    "@notion-stuff/blocks-markdown-parser": "^6.0.0",
     "@notionhq/client": "^2.2.2",
     "@stitches/react": "^1.2.8",
     "@types/node": "18.11.9",
@@ -17,9 +19,12 @@
     "clsx": "^1.2.1",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
+    "highlight.js": "^11.7.0",
     "keyv": "^4.5.2",
+    "marked": "^4.2.3",
     "next": "13.0.5",
     "next-auth": "^4.17.0",
+    "prismjs": "^1.29.0",
     "radix-ui": "^0.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

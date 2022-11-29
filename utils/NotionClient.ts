@@ -5,7 +5,9 @@ import type {
 	GetDatabaseResponse,
 	GetPageResponse,
 	ListBlockChildrenResponse,
+	PageObjectResponse,
 	PartialBlockObjectResponse,
+	PartialPageObjectResponse,
 	QueryDatabaseResponse
 } from '@notionhq/client/build/src/api-endpoints';
 // import Keyv from 'keyv';
@@ -20,7 +22,7 @@ const TTL_MS = TTL_MINS * 60 * 1000;
 export type ParentBreadcrumbSpec = {
 	id: string;
 	name: string;
-	type: 'db' | 'page';
+	type: 'db' | 'page' | null;
 };
 
 export type ServerGetDatabaseResponse = {
@@ -155,6 +157,18 @@ class NotionClient {
 		};
 		return withCache(`block-content-${pageId}`, fetchBlocks);
 	}
+
+	async getFullIndex(): Promise<(PageObjectResponse | PartialPageObjectResponse)[]> {
+		const databases = await this.getChildDatabases();
+		const data = await Promise.all(
+			databases.map((db) => {
+				return this.getDatabase(db.id);
+			})
+		);
+		const merged = data.map(d => d.results).flat()
+			.sort((a,b) => a?.properties?.Name?.title?.[0]?.text?.content?.localeCompare(b?.properties?.Name?.title?.[0]?.text?.content));
+		return merged
+	} 
 }
 
 const notion = new NotionClient(SECRET_NOTION_KEY, SECRET_ROOT_PAGE);

@@ -1,5 +1,5 @@
-import { Card } from './Card';
-
+import { Header, Card as Wrapper } from './Card';
 export {
-    Card
+    Wrapper,
+    Header
 }

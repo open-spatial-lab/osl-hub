@@ -4,6 +4,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 1rem;
+    background-image: linear-gradient(to left, var(--gray-50), var(--gray-75));
 }
 
 .nav ul {

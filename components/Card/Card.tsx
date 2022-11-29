@@ -16,3 +16,7 @@ export function Card({
     </div>
   );
 }
+
+export function Header({ children }: React.PropsWithChildren<{}>) {
+  return <h3 className={styles.header}>{children}</h3>;
+}
