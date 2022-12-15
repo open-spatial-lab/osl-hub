@@ -77,7 +77,7 @@
   ];
 </script>
 
-<footer class=" bg-slate-50 dark:bg-slate-800 py-5">
+<footer class=" bg-slate-50 py-5 dark:bg-slate-800">
   <div class="grid grid-cols-1 max-w-screen-2xl m-auto md:grid-cols-3 md:text-center">
     {#each FooterContent as FooterColumn}
       <ul class="list">
