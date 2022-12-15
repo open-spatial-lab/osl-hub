@@ -2,9 +2,7 @@
 	import Breadcrumbs from '../../../components/Breadcrumbs.svelte';
 	import Entrycard from '../../../components/EntryCard/Entrycard.svelte';
 	import type { DatabaseResponse, DisplaySchema } from './types';
-
 	export let data: DatabaseResponse;
-
 	let cards: Array<Partial<DisplaySchema>> = [];
 	$: if (data.type === 'success') {
 		cards = data.results.map((result: any) => {
@@ -17,11 +15,9 @@
 	}
 	$: title = 'parent' in data ? data.parent[data.parent.length - 1].name : 'Home';
 </script>
-
 <svelte:head>
    <title>{title}</title>
 </svelte:head>
-
 <div class="p-4">
 	<h1 class="fs-01 text-start">{title}</h1>
 	{#if 'parent' in data}
@@ -37,19 +33,16 @@
 		</div>
 	{/if}
 </div>
-
 <style>
 	.card-grid {
 		columns: 2;
 		column-gap: 0.5rem;
 	}
-
 	@media (min-width: 768px) {
 		.card-grid {
 			columns: 3;
 		}
 	}
-
 	@media (min-width: 1024px) {
 		.card-grid {
 			columns: 4;
