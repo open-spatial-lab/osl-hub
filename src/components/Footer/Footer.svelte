@@ -47,13 +47,13 @@
       link: "https://datascience.uchicago.edu/",
       image: dsiLogoDark,
       text: "The Data Sceince Institute",
-      class: "hidden dark:block"
+      class: "hidden no-light dark:block"
     },
     {
       image: csdsLogoDark,
       text: "The Center for Spatial Data Science",
       link: "https://spatial.uchicago.edu/",
-      class: "hidden dark:block"
+      class: "hidden no-light dark:block"
     },
   ];
   const AcknowledgementsColumn: FooterColumn = [

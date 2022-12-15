@@ -51,5 +51,5 @@
 		"keyv": "^4.5.2",
 		"svelte-typewriter": "^3.1.4"
 	},
-	"packageManager": "yarn@3.3.0"
+	"packageManager": "yarn@1.22.19"
 }
