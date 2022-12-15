@@ -3,7 +3,6 @@
 	import dsiLogo from '$lib/images/dsi.png';
 	import csdsLogo from '$lib/images/csds.png';
 	import rwjfLogo from '$lib/images/rwjf.jpg';
-
 	const NavColumn: FooterColumn = [
 		{
 			header: 'Open Spatial Lab Hub'
@@ -25,7 +24,6 @@
 			link: 'https://github.com/open-spatial-lab'
 		}
 	];
-
 	const UChicagoColumn: FooterColumn = [
 		{
 			header: 'University of Chicago'
@@ -41,7 +39,6 @@
 			link: 'https://spatial.uchicago.edu/'
 		}
 	];
-
 	const AcknowledgementsColumn: FooterColumn = [
 		{
 			header: 'Acknowledgements'
@@ -55,7 +52,6 @@
 			text: 'Support for the Open Spatial Lab is provided in part by the Robert Wood Johnson Foundation'
 		}
 	];
-
 	const FooterContent: Array<FooterColumn> = [NavColumn, UChicagoColumn, AcknowledgementsColumn];
 </script>
 

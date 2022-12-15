@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let id: string;
 	$: content = fetchPage(id);
-
 	async function fetchPage(id: string) {
 		const res = await fetch(`/api/notion-page/${id}`);
 		const data = await res.json();

@@ -2,14 +2,11 @@
 	import { Alert } from '@skeletonlabs/skeleton';
 	import Breadcrumbs from '../../../components/Breadcrumbs.svelte';
 	import type { DatabaseResponse } from './types';
-
 	import NotionBlocks from '../../../components/NotionBlocks';
 	import NotionRelations from '../../../components/NotionRelations/NotionRelations.svelte';
-
 	export let data: DatabaseResponse;
 	$: title = data?.page?.properties?.Name?.title?.[0]?.plain_text;
 	$: relationProperties = parseRelations(data?.page?.properties);
-
 	function parseRelations(properties: any) {
 		if (!properties) return [];
 		const relations = [];
@@ -24,12 +21,10 @@
 		return relations;
 	}
 </script>
-
 <svelte:head>
 	<title>{title}</title>
 </svelte:head>
-
-<div class="py-4 px-4">
+<div class="py-4 px-4 max-w-3xl">
 	<h1 class="fs-01 text-start">{title}</h1>
 	{#if 'parent' in data}
 		<Breadcrumbs steps={data.parent} />

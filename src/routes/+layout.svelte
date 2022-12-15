@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '@skeletonlabs/skeleton/themes/theme-hamlindigo.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
-	import '../app.postcss';
+	import './app.postcss';
 	import Header from '../components/Header';
 	import Footer from '../components/Footer';
 	import './styles.css';

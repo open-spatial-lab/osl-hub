@@ -4,7 +4,6 @@
 	export let id: string | undefined;
 	export let title: string | undefined;
 	export let properties: any | undefined;
-
 	let relations: Array<{ title: string; count: number }> = [];
 	$: if (properties) {
 		relations = Object.entries(properties)
@@ -22,7 +21,6 @@
 			});
 	}
 </script>
-
 {#if !id || !title || !properties}
 	<div>
 		<h1>Page not found</h1>
@@ -47,7 +45,6 @@
 			</footer>
 		</dic>
 	</div>
-
 	<style>
 		.grid-card {
 			display: inline-block;

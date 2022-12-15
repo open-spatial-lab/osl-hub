@@ -3,7 +3,6 @@
 	import LoginDropdown from '../Login/LoginDropdown.svelte';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import NavItems from './NavItems.svelte';
-
 	let isOpen = false;
 	const toggle = () => (isOpen = !isOpen);
 </script>

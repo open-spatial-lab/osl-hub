@@ -5,12 +5,10 @@
 	import type { HomePageSchema } from '../types/block';
 	import { writable, type Writable } from 'svelte/store';
     import Typewriter from 'svelte-typewriter'
-
 	export let data: HomePageSchema;
 	const { databases } = data;
 	const storeTab: Writable<string> = writable('learning');
 	let entrypoint = '';
-
 	const handleEntrypoint = (label: string) => (entrypoint = label);
 	const topicsDb = databases.find(
 		(db) => 'child_database' in db && db.child_database.title === 'Topics'
@@ -21,7 +19,6 @@
 	const projectsDb = databases.find(
 		(db) => 'child_database' in db && db.child_database.title === 'Projects'
 	)?.id;
-
 	const typewriterText = [
 		"Data",
 "Knowledge",
@@ -30,7 +27,6 @@
 "Tools"
 	]
 </script>
-
 <svelte:head>
 	<title>osl hub</title>
 	<meta name="description" content="Svelte demo app" />
@@ -113,7 +109,6 @@
 		</section>
 	</div>
 </div>
-
 <style>
 	section {
 		display: flex;
@@ -122,11 +117,9 @@
 		align-items: center;
 		flex: 0.6;
 	}
-
 	h1 {
 		width: 100%;
 	}
-
 	.welcome {
 		display: block;
 		position: relative;
@@ -134,7 +127,6 @@
 		height: 0;
 		padding: 0 0 calc(100% * 495 / 2048) 0;
 	}
-
 	.welcome img {
 		position: absolute;
 		width: 100%;
