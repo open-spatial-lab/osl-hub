@@ -208,6 +208,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iarna/toml@npm:^2.2.5":
+  version: 2.2.5
+  resolution: "@iarna/toml@npm:2.2.5"
+  checksum: b63b2b2c4fd67969a6291543ada0303d45593801ee744b60f5390f183c03d9192bc67a217abb24be945158f1935f02840d9ffff40c0142aa171b5d3b6b6a3ea5
+  languageName: node
+  linkType: hard
+
 "@iconify/svelte@npm:^3.0.1":
   version: 3.0.1
   resolution: "@iconify/svelte@npm:3.0.1"
@@ -385,6 +392,19 @@ __metadata:
   peerDependencies:
     "@sveltejs/kit": ^1.0.0
   checksum: e335ece5790091bf656b85085f9cecb730083dd402398424ed3ecb9024278fc4b5345ec9b0a640f1de67156eeb98898036adc81e0d32728fef51ad3c4ce864c1
+  languageName: node
+  linkType: hard
+
+"@sveltejs/adapter-netlify@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@sveltejs/adapter-netlify@npm:1.0.0"
+  dependencies:
+    "@iarna/toml": ^2.2.5
+    esbuild: ^0.16.3
+    set-cookie-parser: ^2.5.1
+  peerDependencies:
+    "@sveltejs/kit": ^1.0.0
+  checksum: 70306cc95757153d678eba76160e614d6d8c7c9b0c7c667401dcbf4d17763bc113bbd6eaf5fedf6d38404bdbbb8ed76454854454433e8063dc07bdaf73ecbeea
   languageName: node
   linkType: hard
 
@@ -2580,6 +2600,7 @@ __metadata:
     "@playwright/test": ^1.28.1
     "@skeletonlabs/skeleton": ^0.80.8
     "@sveltejs/adapter-auto": ^1.0.0
+    "@sveltejs/adapter-netlify": ^1.0.0
     "@sveltejs/kit": ^1.0.0
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/line-clamp": ^0.4.2
