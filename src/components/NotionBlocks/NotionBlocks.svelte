@@ -9,6 +9,15 @@
 	}
 </script>
 
-<div class="my-4">
+<div class="my-4 notion-block-container">
 	{@html stringifiedHtml}
 </div>
+
+<style>
+	.notion-block-container {
+		margin: 0 auto;
+	}
+	/* .notion-block-container * {
+		padding: 1rem 0 !important;
+	} */
+</style>
