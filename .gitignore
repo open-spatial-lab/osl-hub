@@ -38,3 +38,5 @@ next-env.d.ts
 
 .svelte-kit/*
 .yarn/
+.yarnrc.yml
+yarn.lock
