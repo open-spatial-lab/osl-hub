@@ -5,6 +5,9 @@
 	import type { HomePageSchema } from '../types/block';
 	import { writable, type Writable } from 'svelte/store';
     import Typewriter from 'svelte-typewriter'
+	import Icon from '@iconify/svelte';
+
+
 	export let data: HomePageSchema;
 	const { databases } = data;
 	const storeTab: Writable<string> = writable('learning');
@@ -37,19 +40,26 @@
 			tag="h1"
 			class="text-6xl text-left basis-9/12 md:text-8xl"
 			direction="bg-gradient-to-r"
-			from="from-primary-500"
-			to="to-accent-500">
-			<Typewriter mode="loopRandom" element="span" class="inline-block">
+			from="from-accent-500"
+			to="to-primary-500">
+			<Typewriter mode="loopRandom" element="span" class="inline-block" interval={25} unwriteInterval={25} cursor={false} wordInterval={3000}>
 				{#each typewriterText as text}
-					<h1 class="text-surface-50 inline-block text-6xl text-left md:text-8xl">{text}</h1>
+					<h1 class="text-accent-500 inline-block text-6xl text-left md:text-8xl dark:text-accent-500 underline">{text}</h1>
 				{/each}
 			</Typewriter>
-			 shouldn't have dead ends.</GradientHeading
+			<br/>
+			 shouldn't have <br/>dead ends.</GradientHeading
 		>
 		<div class="basis-3/12 p-4 bg-surface-100 dark:bg-surface-800">
 			<TabGroup selected={storeTab}>
-				<Tab value="learning">Learning</Tab>
-				<Tab value="sharing">Sharing</Tab>
+				<Tab value="learning">
+					<Icon icon="material-symbols:menu-book-outline-sharp" class="text-xl mr-1 inline-block"/>
+					Learning
+				</Tab>
+				<Tab value="sharing">
+					<Icon icon="ic:baseline-share" class="text-xl mr-1 inline-block"/>
+					Sharing
+				</Tab>
 			</TabGroup>
 			<div class="py-4">
 				{#if $storeTab === 'learning'}

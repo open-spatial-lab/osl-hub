@@ -12,6 +12,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@iconify/svelte": "^3.0.1",
 		"@notion-stuff/blocks-html-parser": "^6.0.0",
 		"@notion-stuff/blocks-markdown-parser": "^6.0.0",
 		"@notion-stuff/v4-types": "^6.0.0",
@@ -25,11 +26,13 @@
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.13",
+		"classnames": "^2.3.2",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"highlight.js": "^11.7.0",
 		"marked": "^4.2.4",
+		"postcss": "^8.4.20",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
 		"svelte": "^3.54.0",

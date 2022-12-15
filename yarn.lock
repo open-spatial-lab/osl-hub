@@ -208,6 +208,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iconify/svelte@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@iconify/svelte@npm:3.0.1"
+  dependencies:
+    "@iconify/types": ^2.0.0
+  peerDependencies:
+    svelte: ">=3"
+  checksum: 5739aa18e10593b6fdb2bcfe4ea0b719b85c8b12b705674d6f73354347e62961220427017eec5f5a86361790a3cdaf9cda1ab57f08dee76b4bff244c35d00d0e
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@iconify/types@npm:2.0.0"
+  checksum: 029f58542c160e9d4a746869cf2e475b603424d3adf3994c5cc8d0406c47e6e04a3b898b2707840c1c5b9bd5563a1660a34b110d89fce43923baca5222f4e597
+  languageName: node
+  linkType: hard
+
 "@jridgewell/resolve-uri@npm:3.1.0":
   version: 3.1.0
   resolution: "@jridgewell/resolve-uri@npm:3.1.0"
@@ -1015,6 +1033,13 @@ __metadata:
   version: 2.0.0
   resolution: "chownr@npm:2.0.0"
   checksum: c57cf9dd0791e2f18a5ee9c1a299ae6e801ff58fee96dc8bfd0dcb4738a6ce58dd252a3605b1c93c6418fe4f9d5093b28ffbf4d66648cb2a9c67eaef9679be2f
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "classnames@npm:2.3.2"
+  checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
   languageName: node
   linkType: hard
 
@@ -2547,6 +2572,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "osl-hub@workspace:."
   dependencies:
+    "@iconify/svelte": ^3.0.1
     "@notion-stuff/blocks-html-parser": ^6.0.0
     "@notion-stuff/blocks-markdown-parser": ^6.0.0
     "@notion-stuff/v4-types": ^6.0.0
@@ -2561,12 +2587,14 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.45.0
     "@typescript-eslint/parser": ^5.45.0
     autoprefixer: ^10.4.13
+    classnames: ^2.3.2
     eslint: ^8.28.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-svelte3: ^4.0.0
     highlight.js: ^11.7.0
     keyv: ^4.5.2
     marked: ^4.2.4
+    postcss: ^8.4.20
     prettier: ^2.8.0
     prettier-plugin-svelte: ^2.8.1
     svelte: ^3.54.0

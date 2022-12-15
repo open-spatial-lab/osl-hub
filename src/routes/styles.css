@@ -37,6 +37,7 @@ p {
 a {
 	position: relative;
 	text-decoration: none;
+	white-space: initial;
 }
 
 a::before {
