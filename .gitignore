@@ -35,5 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env
-.svelte-kit
-.yarn
+
+.svelte-kit/*
+.yarn/

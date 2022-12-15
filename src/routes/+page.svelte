@@ -103,7 +103,7 @@
 		<section class="align-items-start p-4">
 			{#each databases as database}
 				<Card href={`/db/${database.id}`}>
-					{database.child_database.title}
+					{"child_database" in database ? database.child_database.title : ""}
 				</Card>
 			{/each}
 		</section>
