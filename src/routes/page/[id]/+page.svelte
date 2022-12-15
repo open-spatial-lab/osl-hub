@@ -33,7 +33,7 @@
 		<NotionBlocks blocks={data?.content?.results} />
 	{/if}
 	<NotionRelations properties={relationProperties} />
-	<Alert color="light" class="d-inline-block">
+	<Alert color="light" class="mt-10">
 		<svelte:fragment slot="title">See something missing?</svelte:fragment>
 		<span
 			>OSL hub is an evolving content database. If you've spotted an error or want to contribute,

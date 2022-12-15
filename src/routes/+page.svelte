@@ -7,7 +7,6 @@
     import Typewriter from 'svelte-typewriter'
 	import Icon from '@iconify/svelte';
 
-
 	export let data: HomePageSchema;
 	const { databases } = data;
 	const storeTab: Writable<string> = writable('learning');

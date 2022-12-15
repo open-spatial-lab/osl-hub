@@ -384,7 +384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-auto@npm:^1.0.0":
+"@sveltejs/adapter-auto@npm:1.0.0":
   version: 1.0.0
   resolution: "@sveltejs/adapter-auto@npm:1.0.0"
   dependencies:
@@ -395,7 +395,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-netlify@npm:^1.0.0":
+"@sveltejs/adapter-netlify@npm:1.0.0":
   version: 1.0.0
   resolution: "@sveltejs/adapter-netlify@npm:1.0.0"
   dependencies:
@@ -408,7 +408,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^1.0.0":
+"@sveltejs/kit@npm:1.0.0":
   version: 1.0.0
   resolution: "@sveltejs/kit@npm:1.0.0"
   dependencies:
@@ -2599,9 +2599,9 @@ __metadata:
     "@notionhq/client": ^2.2.2
     "@playwright/test": ^1.28.1
     "@skeletonlabs/skeleton": ^0.80.8
-    "@sveltejs/adapter-auto": ^1.0.0
-    "@sveltejs/adapter-netlify": ^1.0.0
-    "@sveltejs/kit": ^1.0.0
+    "@sveltejs/adapter-auto": 1.0.0
+    "@sveltejs/adapter-netlify": 1.0.0
+    "@sveltejs/kit": 1.0.0
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/line-clamp": ^0.4.2
     "@tailwindcss/typography": ^0.5.8
