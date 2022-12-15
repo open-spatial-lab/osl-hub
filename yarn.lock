@@ -199,6 +199,13 @@
   dependencies:
     "@notionhq/client" "~1.0.0"
 
+"@notion-stuff/v4-types@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@notion-stuff/v4-types/-/v4-types-6.0.0.tgz#b0af7d0e07b2f0421ea1878e97448e39c3e6ae1e"
+  integrity sha512-7uYMG4IOrDkxcdouv1VrFlBuvJXnkpAdahZmVYSrps6Oq1geFoKeXj4oilDEc9mo6CdahKcEeEOT+k+hJQA9cw==
+  dependencies:
+    "@notionhq/client" "~1.0.0"
+
 "@notionhq/client@^2.2.2":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@notionhq/client/-/client-2.2.2.tgz#621eab5788fd1aca67d53454871bbf4122e651ba"

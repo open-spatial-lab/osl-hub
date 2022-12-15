@@ -14,6 +14,7 @@
 	"devDependencies": {
 		"@notion-stuff/blocks-html-parser": "^6.0.0",
 		"@notion-stuff/blocks-markdown-parser": "^6.0.0",
+		"@notion-stuff/v4-types": "^6.0.0",
 		"@playwright/test": "^1.28.1",
 		"@skeletonlabs/skeleton": "^0.80.8",
 		"@sveltejs/adapter-auto": "^1.0.0",
