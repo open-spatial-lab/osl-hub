@@ -24,7 +24,7 @@
 <svelte:head>
 	<title>{title}</title>
 </svelte:head>
-<div class="py-4 px-4 max-w-3xl">
+<div class="py-4 px-4 max-w-3xl mx-auto my-10 bg-neutral-50 shadow-2xl dark:bg-neutral-800">
 	<h1 class="fs-01 text-start">{title}</h1>
 	{#if 'parent' in data}
 		<Breadcrumbs steps={data.parent} />
