@@ -1,8 +1,7 @@
 <script lang="ts">
-	import cx from 'classnames'
-	export let href: string;
+		export let href: string;
 </script>
 
-<a {href} class="btn m-2 inline-block text-2xl btn-filled">
+<a {href} class="btn m-2 inline-block text-2xl btn-ringed">
 	<slot />
 </a>

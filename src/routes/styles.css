@@ -114,3 +114,9 @@ article ul, article ol {
 article ul li, article ol li {
 	margin-bottom: 0.5rem;
 }
+
+div.app-bar {
+	position:sticky;
+	z-index:10;
+	top:0;
+}
