@@ -2,6 +2,11 @@
     import { GradientHeading } from '@skeletonlabs/skeleton';
 </script>
 
+
+<svelte:head>
+  <title>osl hub: about</title>
+  <meta name="description" content="About the osl hub, a never-end resource hub" />
+</svelte:head>
 <div
   class="max-w-screen-2xl m-auto flex flex-col items-start p:8 space-y-8 lg:p-0"
 >
