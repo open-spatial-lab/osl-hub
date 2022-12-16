@@ -1,6 +1,6 @@
 import SvelteKitAuth from "@auth/sveltekit"
-import GitHub from 'next-auth/providers/github'
-import GoogleProvider from 'next-auth/providers/google'
+import GitHub from "@auth/core/providers/github"
+import Google from "@auth/core/providers/google"
 import { 
   SECRET_GITHUB_CLIENT_ID,
   SECRET_GITHUB_CLIENT_SECRET,
@@ -14,7 +14,7 @@ export const handle = SvelteKitAuth({
       clientId: SECRET_GITHUB_CLIENT_ID,
       clientSecret: SECRET_GITHUB_CLIENT_SECRET
     }),
-    GoogleProvider({
+    Google({
       clientId: SECRET_GOOGLE_CLIENT_ID,
       clientSecret: SECRET_GOOGLE_CLIENT_SECRET
     })
