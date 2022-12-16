@@ -8,7 +8,6 @@
   const email = $page?.data?.session?.user?.email;
   const name = $page?.data?.session?.user?.name || email;
   const image = $page?.data?.session?.user?.image;
-  console.log(isClient ? $page : "")
 </script>
 
 {#if isLoggedIn}

@@ -8,6 +8,7 @@
   import Icon from "@iconify/svelte";
   import IllustrationSvg from "../components/IllustrationSVG.svelte";
   import { Alert } from '@skeletonlabs/skeleton';
+  import { scrollTo } from "$lib/scroll";
 
   export let data: HomePageSchema;
   const { databases } = data;
@@ -38,9 +39,9 @@
   <title>osl hub</title>
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
-<div class="flex flex-col items-center  min-h-screen">
+<div class="flex flex-col items-center min-h-screen">
   <div
-    class="flex-col flex max-w-screen-2xl justify-center align-center items-center min-h-screen p-8 space-y-20 lg:p-0 lg:flex-row lg:space-x-2"
+    class="flex-col flex max-w-screen-2xl relative justify-center align-center items-center min-h-screen p-8 space-y-20 lg:p-0 lg:flex-row lg:space-x-2"
   >
     <GradientHeading
       tag="h1"
@@ -129,9 +130,16 @@
           >
         {/if}
       </div>
+      <div class="absolute bottom-20" style="left:50%;transform:translateX(-50%);">
+        <button class="btn flex flex-col" on:click={() => typeof window !== "undefined" && scrollTo(window.innerHeight + 62)}>
+          <Icon icon="material-symbols:arrow-circle-down-rounded" class="text-4xl"/>
+          (more down here...)
+        </button>
+      </div>
     </div>
   </div>
   <div
+    id="second-section"
     class="flex-col flex justify-center align-center items-center space-y-2 w-full space-x-2 min-h-screen bg-neutral-100 dark:bg-neutral-800 md:p-8"
   >
     <div class="flex flex-col max-w-screen-2xl w-full m-auto items-center p-5 space-y-10 lg:flex-row lg:p-0">
@@ -156,8 +164,9 @@
 					a powerful and blazingly fast new(ish) programming language!
 			</Alert>
 		</div>
-		<div class="w-full flex-1 dark:bg-neutral-100/25 basis-1/2 rounded-full">
+		<div class="w-full flex-1 basis-1/2 relative">
 			<IllustrationSvg />
+			<span class="w-full absolute left-0 top-0 h-full rounded-full dark:bg-gradient-to-r from-cyan-500/25 to-blue-500/25 blur-2xl z-0"></span>
 		</div>
     </div>
   </div>
