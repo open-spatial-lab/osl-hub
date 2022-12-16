@@ -9,7 +9,7 @@ import {
 } from "$env/static/private"
 
 export const handle = SvelteKitAuth({
-  trustHost: true,
+  // trustHost: true,
   providers: [
     GitHub({ 
       clientId: SECRET_GITHUB_CLIENT_ID,
