@@ -5,8 +5,6 @@
 	import Header from '../components/Header';
 	import Footer from '../components/Footer';
 	import './styles.css';
-	import { page } from "$app/stores"
-	console.log(page)
 </script>
 
 <div class="app flex flex-col justify-between">

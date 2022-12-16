@@ -27,6 +27,6 @@
       <a href="/auth/signout">Sign out</a>
     </div>
   </span>
-{:else}
-  <!-- <a href="/auth/signin">Sign In</a> -->
+{:else if typeof window !== "undefined"}
+  <a href={"/auth/signin"}>Sign In</a>
 {/if}
