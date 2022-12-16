@@ -3,10 +3,12 @@
   import { Avatar } from "@skeletonlabs/skeleton";
   import { page } from "$app/stores";
 
+  const isClient = typeof window !== "undefined";
   const isLoggedIn = Object.keys($page.data.session || {}).length;
   const email = $page?.data?.session?.user?.email;
   const name = $page?.data?.session?.user?.name || email;
   const image = $page?.data?.session?.user?.image;
+  console.log(isClient ? $page : "")
 </script>
 
 {#if isLoggedIn}
@@ -27,6 +29,7 @@
       <a href="/auth/signout">Sign out</a>
     </div>
   </span>
-{:else if typeof window !== "undefined"}
-  <a href={"/auth/signin"}>Sign In</a>
+{:else}
+<!-- Prevent crawler from pre-rendering auth pages -->
+  <a href={isClient? "/auth/signin" : "/"}>Sign In</a>
 {/if}
