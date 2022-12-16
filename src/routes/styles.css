@@ -106,3 +106,11 @@ button:focus:not(:focus-visible) {
 html.dark *.no-light {
 	display: initial !important;
 }
+
+article ul, article ol {
+	list-style: circle;
+	padding-left:1rem;
+}
+article ul li, article ol li {
+	margin-bottom: 0.5rem;
+}
