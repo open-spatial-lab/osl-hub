@@ -4,7 +4,13 @@
 	import type { DatabaseResponse } from './types';
 	import NotionBlocks from '../../../components/NotionBlocks';
 	import NotionRelations from '../../../components/NotionRelations/NotionRelations.svelte';
+	import { onMount } from 'svelte';
+	import { scrollTo } from "$lib/scroll";
+
+	onMount(() => scrollTo(0))
+	
 	export let data: DatabaseResponse;
+	
 	$: title = data?.page?.properties?.Name?.title?.[0]?.plain_text;
 	$: relationProperties = parseRelations(data?.page?.properties);
 	function parseRelations(properties: any) {
