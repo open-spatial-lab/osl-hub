@@ -17,7 +17,7 @@
 	<svelte:fragment slot="trail">
 		<div class="flex-row space-x-4 hidden md:flex">
 			<NavItems />
-			<LoginDropdown />
+			<!-- <LoginDropdown /> -->
 			<LightSwitch />
 		</div>
 		<span class="relative md:hidden">

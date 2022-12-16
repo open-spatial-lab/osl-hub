@@ -28,5 +28,5 @@
     </div>
   </span>
 {:else}
-  <a href="/auth/signin">Sign In</a>
+  <!-- <a href="/auth/signin">Sign In</a> -->
 {/if}
