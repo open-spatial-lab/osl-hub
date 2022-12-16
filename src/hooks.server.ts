@@ -14,9 +14,9 @@ export const handle = SvelteKitAuth({
       clientId: SECRET_GITHUB_CLIENT_ID,
       clientSecret: SECRET_GITHUB_CLIENT_SECRET
     }),
-    Google({
-      clientId: SECRET_GOOGLE_CLIENT_ID,
-      clientSecret: SECRET_GOOGLE_CLIENT_SECRET
-    })
+    // Google({
+    //   clientId: SECRET_GOOGLE_CLIENT_ID,
+    //   clientSecret: SECRET_GOOGLE_CLIENT_SECRET
+    // })
   ],
 })

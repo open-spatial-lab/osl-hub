@@ -1,26 +1,32 @@
-<!-- <script lang="ts">
-	import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, NavLink } from 'sveltestrap';
-	import { page } from '$app/stores';
-    const isLoggedIn = Object.keys($page.data.session || {}).length
-    const email = $page?.data?.session?.user?.email;
-    const name = $page?.data?.session?.user?.name || email;
-    const image = $page?.data?.session?.user?.image;
-	console.log(page)
+<script lang="ts">
+  import { menu } from "@skeletonlabs/skeleton";
+  import { Avatar } from "@skeletonlabs/skeleton";
+  import { page } from "$app/stores";
+
+  const isLoggedIn = Object.keys($page.data.session || {}).length;
+  const email = $page?.data?.session?.user?.email;
+  const name = $page?.data?.session?.user?.name || email;
+  const image = $page?.data?.session?.user?.image;
 </script>
 
 {#if isLoggedIn}
-	<Dropdown>
-		<DropdownToggle caret color="light">
-			{#if image}
-                <img src={image} alt="" class="rounded-circle" width="26" height="26" />
-                {name}
-			{/if}
-		</DropdownToggle>
-		<DropdownMenu>
-			<DropdownItem header>{email}</DropdownItem>
-			<DropdownItem href="/api/auth/signout">Sign out</DropdownItem>
-		</DropdownMenu>
-	</Dropdown>
+  <span class="relative">
+    <!-- Trigger: apply the 'use:menu' action and supply the unique menu ID -->
+    <button use:menu={{ menu: "login", interactive: true }}>
+      {#if image}
+        <Avatar src={image} alt={`${name} avatar`} width="w-6" />
+      {:else}
+        <Avatar initials={name?.slice(0, 2)} />
+      {/if}
+    </button>
+
+    <!-- Menu: set a matching 'data-menu-[menuId]' attribute -->
+    <div data-menu="login" class="text-left bg-primary-500 py-2 px-3 rounded-md shadow-md dark:shadow-neutral-600">
+      <p><b>{name}</b></p>
+      <p><i>{email}</i></p>
+      <a href="/auth/signout">Sign out</a>
+    </div>
+  </span>
 {:else}
-	<NavLink href="/api/auth/signin">Sign In</NavLink>
-{/if} -->
+  <a href="/auth/signin">Sign In</a>
+{/if}
