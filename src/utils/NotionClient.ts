@@ -9,11 +9,10 @@ import type {
 	QueryDatabaseResponse
 } from '@notionhq/client/build/src/api-endpoints';
 import { SECRET_NOTION_KEY, SECRET_ROOT_PAGE } from '$env/static/private';
-import Keyv from 'keyv';
-
-const TTL_MINS = import.meta.env.MODE === "development" ? 0.01 : 60;
-const TTL_MS = TTL_MINS * 60 * 1000;
-const endpointCache = new Keyv({ namespace: 'notion-cache', ttl: TTL_MS });
+// import Keyv from 'keyv';
+// const TTL_MINS = import.meta.env.MODE === "development" ? 0.01 : 60;
+// const TTL_MS = TTL_MINS * 60 * 1000;
+// const endpointCache = new Keyv({ namespace: 'notion-cache', ttl: TTL_MS });
 
 export type ParentBreadcrumbSpec = {
 	id: string;
@@ -36,13 +35,13 @@ export type ServerGetPageContentResponse = ServerGetPageResponse & {
 };
 
 const withCache = async <T>(key: string, fn: () => Promise<T>): Promise<T> => {
-	const cached = await endpointCache.get(key);
-	if (cached) {
-		console.log(key, ' is cached');
-		return cached;
-	}
+	// const cached = await endpointCache.get(key);
+	// if (cached) {
+	// 	console.log(key, ' is cached');
+	// 	return cached;
+	// }
 	const result = await fn();
-	await endpointCache.set(key, result);
+	// await endpointCache.set(key, result);
 	return result;
 };
 
