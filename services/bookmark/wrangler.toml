@@ -1,4 +1,7 @@
-main = "./src/index.ts"
-name = "bookmark-service"
-compatibility_date = "2022-07-26"
-kv_namespaces = [{binding = "BOOKMARK", id = "abaeaa86bb394b70b94099de493c40aa", preview_id = "ad8b00d2c69549f296a8b57cb3ae65d2"}]
+name = "cache"
+main = "src/index.ts"
+compatibility_date = "2022-12-20"
+port = 8020
+kv_namespaces = [{binding = "HUBCACHE", id = "abaeaa86bb394b70b94099de493c40aa", preview_id = "ad8b00d2c69549f296a8b57cb3ae65d2"}]
+[env.dev]
+kv_namespaces = [{binding = "HUBCACHE", id = "abaeaa86bb394b70b94099de493c40aa", preview_id = "ad8b00d2c69549f296a8b57cb3ae65d2"}]

@@ -9,6 +9,7 @@ import type {
 	QueryDatabaseResponse
 } from '@notionhq/client/build/src/api-endpoints';
 import { SECRET_NOTION_KEY, SECRET_ROOT_PAGE } from '$env/static/private';
+import { withCache } from '$lib/utils/withCache';
 // import Keyv from 'keyv';
 // const TTL_MINS = import.meta.env.MODE === "development" ? 0.01 : 60;
 // const TTL_MS = TTL_MINS * 60 * 1000;
@@ -33,18 +34,6 @@ export type ServerGetPageResponse = {
 export type ServerGetPageContentResponse = ServerGetPageResponse & {
 	content: ListBlockChildrenResponse;
 };
-
-const withCache = async <T>(key: string, fn: () => Promise<T>): Promise<T> => {
-	// const cached = await endpointCache.get(key);
-	// if (cached) {
-	// 	console.log(key, ' is cached');
-	// 	return cached;
-	// }
-	const result = await fn();
-	// await endpointCache.set(key, result);
-	return result;
-};
-
 class NotionClient {
 	notion: Client;
 	pageRoot: string;

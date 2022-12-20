@@ -7,11 +7,11 @@
 		"services/*"
 	],
 	"scripts": {
-		"generate-kv": "npx zx ./services/scripts/generate-kv.js",
+		"generate-kvs": "npx zx ./services/scripts/generate-kv.js",
 		"clear-kv": "npx zx ./services/scripts/clear-kv.js",
 		"dev-app": "yarn workspace app dev",
-		"dev-cache": "yarn workspace cache dev",
-		"dev-bookmark": "yarn workspace bookmark dev",
+		"dev-cache": "yarn workspace cache start",
+		"dev-bookmark": "yarn workspace bookmark start",
 		"dev": "concurrently \"yarn:dev-*\""
 	},
 	"devDependencies": {

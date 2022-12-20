@@ -1,24 +1,47 @@
 #!/usr/bin/env zx
-import fs from 'fs'
+import fs from "fs";
 
-const idRegex = /\bid =\s+(.*)"/g
-const previewRegex = /\bpreview_id =\s+(.*)"/g
-const kvRegex = /\bkv_namespaces\s+=\s+\[(.|\n)*\]/g
+const existingKvs = JSON.parse((await $`wrangler kv:namespace list`).toString())
+const idRegex = /\bid =\s+(.*)"/g;
+const previewRegex = /\bpreview_id =\s+(.*)"/g;
+const kvRegex = /\bkv_namespaces\s+=\s+\[(.|)*\]/g
 
-const cacheProd = await $`wrangler kv:namespace create "HUBCACHE"`
-const cacheDev = await $`wrangler kv:namespace create --preview "HUBCACHE"`
+let kvs = [
+  { ns: "worker-HUBCACHE", prop: "id", regex: idRegex, id: null },
+  { ns: "worker-HUBCACHE_preview", prop: "preview_id", regex: previewRegex, id: null },
+  { ns: "worker-BOOKMARK", prop: "id", regex: idRegex, id: null },
+  { ns: "worker-BOOKMARK_preview", prop: "preview_id", regex: previewRegex, id: null },
+]
 
-const cacheId = cacheProd.toString().match(idRegex)[0]
-const cachePreviewId = cacheDev.toString().match(previewRegex)[0]
-const cacheWranglerText = fs.readFileSync('./services/cache/wrangler.toml', 'utf8')
-fs.writeFileSync('./services/cache/wrangler.toml', cacheWranglerText.replace(kvRegex, `kv_namespaces = [{binding = "HUBCACHE", ${cacheId}, ${cachePreviewId}}]`))
+async function createOrUseNs(mutableNsObj){
+  let {
+    ns,
+    prop,
+    regex,
+  } = mutableNsObj
+  const existingKv = existingKvs.find((entry) => entry.title === ns)
+  if(existingKv){
+    mutableNsObj.id = `${prop} = "${existingKv.id}"`
+  } else {
+    const prod = await $`wrangler kv:namespace create "${ns}" ${prop === "id" ? "" : "--preview"}`
+    mutableNsObj.id = prod.toString().match(regex)[0]
+  }
+}
 
-const bookmarkProd = await $`wrangler kv:namespace create "BOOKMARK"`
-const bookmarkDev = await $`wrangler kv:namespace create --preview "BOOKMARK"`
+async function appendToml(path, regex, text){
+  const wranglerText = fs.readFileSync(path, "utf8");
+  fs.writeFileSync(
+    path,
+    wranglerText.replaceAll(
+      regex,
+      text
+    )
+  );
+}
 
-const bookmarkId = bookmarkProd.toString().match(idRegex)[0]
-const bookmarkPreviewId = bookmarkDev.toString().match(previewRegex)[0]
-const bookmarkWranglerText = fs.readFileSync('./services/bookmark/wrangler.toml', 'utf8')
-fs.writeFileSync('./services/bookmark/wrangler.toml', bookmarkWranglerText.replace(kvRegex, `kv_namespaces = [{
-    binding = "BOOKMARK", ${bookmarkId}, ${bookmarkPreviewId}
-}]`))
+for (const kv of kvs) {
+  await createOrUseNs(kv)
+}
+const [cacheId, cachePreviewId, bookmarkId, bookmarkPreviewId] = [kvs[0].id, kvs[1].id, kvs[2].id, kvs[3].id];
+appendToml("./services/cache/wrangler.toml", kvRegex, `kv_namespaces = [{binding = "HUBCACHE", ${cacheId}, ${cachePreviewId}}]`)
+appendToml("./services/bookmark/wrangler.toml", kvRegex, `kv_namespaces = [{binding = "HUBCACHE", ${bookmarkId}, ${bookmarkPreviewId}}]`)
