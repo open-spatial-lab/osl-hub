@@ -1,58 +1,29 @@
 {
 	"name": "osl-hub",
 	"version": "0.0.1",
+	"private": true,
+	"workspaces": [
+		"app",
+		"services/*"
+	],
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"test": "playwright test",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"generate-kv": "npx zx ./services/scripts/generate-kv.js",
+		"clear-kv": "npx zx ./services/scripts/clear-kv.js",
+		"dev-app": "yarn workspace app dev",
+		"dev-cache": "yarn workspace cache dev",
+		"dev-bookmark": "yarn workspace bookmark dev",
+		"dev": "concurrently \"yarn:dev-*\""
 	},
 	"devDependencies": {
-		"@iconify/svelte": "^3.0.1",
-		"@notion-stuff/blocks-html-parser": "^6.0.0",
-		"@notion-stuff/blocks-markdown-parser": "^6.0.0",
-		"@notion-stuff/v4-types": "^6.0.0",
-		"@playwright/test": "^1.28.1",
-		"@skeletonlabs/skeleton": "^0.80.8",
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/adapter-netlify": "next",
-		"@sveltejs/kit": "next",
-		"@tailwindcss/forms": "^0.5.3",
-		"@tailwindcss/line-clamp": "^0.4.2",
-		"@tailwindcss/typography": "^0.5.8",
-		"@typescript-eslint/eslint-plugin": "^5.45.0",
-		"@typescript-eslint/parser": "^5.45.0",
-		"autoprefixer": "^10.4.13",
-		"classnames": "^2.3.2",
-		"eslint": "^8.28.0",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-svelte3": "^4.0.0",
-		"highlight.js": "^11.7.0",
-		"marked": "^4.2.4",
-		"next-auth": "^4.18.6",
-		"postcss": "^8.4.20",
-		"prettier": "^2.8.0",
-		"prettier-plugin-svelte": "^2.8.1",
-		"svelte": "^3.55.0",
-		"svelte-check": "^2.10.2",
-		"svelte-preprocess": "^5.0.0",
-		"tailwindcss": "^3.2.4",
+		"concurrently": "^7.6.0",
 		"tslib": "^2.4.1",
 		"typescript": "^4.9.4",
 		"vite": "^4.0.1",
-		"vitest": "^0.25.3"
+		"vitest": "^0.25.3",
+		"wrangler": "^2.6.2",
+		"yarn": "^1.22.19",
+		"zx": "^7.1.1"
 	},
 	"type": "module",
-	"dependencies": {
-		"@auth/core": "latest",
-		"@auth/sveltekit": "latest",
-		"@notionhq/client": "^2.2.2",
-		"keyv": "^4.5.2",
-		"svelte-typewriter": "^3.1.4"
-	},
-	"packageManager": "yarn@1.22.19"
+	"packageManager": "yarn@3.3.1"
 }

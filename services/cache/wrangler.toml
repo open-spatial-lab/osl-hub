@@ -1,0 +1,4 @@
+main = "./src/index.ts"
+name = "cache-service"
+compatibility_date = "2022-07-26"
+kv_namespaces = [{binding = "HUBCACHE", id = "7f39a097c3bd4cba83982ad1ed139d74", preview_id = "77225d59b6d24f8fa791da51cce9d77d"}]
