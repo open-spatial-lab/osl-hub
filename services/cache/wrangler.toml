@@ -1,0 +1,12 @@
+name = "cache"
+main = "src/index.ts"
+account_id = "2b89914690bccb305a7f0d5d64309692"
+compatibility_date = "2022-12-20"
+
+kv_namespaces = [{binding = "HUBCACHE", id = "7f39a097c3bd4cba83982ad1ed139d74", preview_id = "77225d59b6d24f8fa791da51cce9d77d"}]
+
+[env.dev]
+kv_namespaces = [{binding = "HUBCACHE", id = "7f39a097c3bd4cba83982ad1ed139d74", preview_id = "77225d59b6d24f8fa791da51cce9d77d"}]
+[env.dev.vars]
+PRESHARED_AUTH_HEADER_KEY="x-custom-obscured-header"
+PRESHARED_AUTH_HEADER_VALUE="a-very-secure-key"
