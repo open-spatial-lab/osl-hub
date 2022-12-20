@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
   import Icon from "@iconify/svelte";
 
   export let contentId: string;
@@ -14,6 +14,7 @@
   };
 
   onMount(() => handleFetch());
+  afterUpdate(() => handleFetch());
 </script>
 
 <button
