@@ -12,7 +12,6 @@ class Cache {
     const response = await fetch(`${this.url}?action=get&key=${key}`, {
       headers: this.requestHeaders,
     });
-    console.log(key)
     if (response.status !== 200) {
       return null;
     }
@@ -35,7 +34,6 @@ export const withCache = async <T>(
 ): Promise<T> => {
   const cached = await endpointCache.get(key);
   if (cached) {
-    console.log(key, " is cached");
     return cached;
   }
   const result = await fn();

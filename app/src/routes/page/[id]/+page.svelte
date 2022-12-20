@@ -1,22 +1,30 @@
 <script lang="ts">
   import { Alert } from "@skeletonlabs/skeleton";
   import Breadcrumbs from "../../../components/Breadcrumbs.svelte";
-  import type { DatabaseResponse } from "./types";
+  import type { ContentResponse, PageResponse } from "./types";
   import NotionBlocks from "../../../components/NotionBlocks";
   import NotionRelations from "../../../components/NotionRelations/NotionRelations.svelte";
   import { onMount } from "svelte";
   import { scrollTo } from "$lib/scroll";
+  import Bookmark from "../../../components/Bookmarked";
+  import { page } from '$app/stores';
 
   onMount(() => scrollTo(0));
 
-  export let data: DatabaseResponse;
+  export let data: PageResponse;
 
   $: title = data?.page?.properties?.Name?.title?.[0]?.plain_text;
   $: relationProperties = parseRelations(data?.page?.properties);
+
   function parseRelations(properties: any) {
     if (!properties) return [];
     const relations = [];
-    for (const [key, value] of Object.entries(properties)) {
+    const entries = Object.entries(properties) as [
+      string,
+      { type: string; relation: {id: string}[] }
+    ][];
+
+    for (const [key, value] of entries) {
       if (value.type === "relation") {
         relations.push({
           name: key,
@@ -26,6 +34,8 @@
     }
     return relations;
   }
+
+  console.log(data)
 </script>
 
 <svelte:head>
@@ -35,12 +45,16 @@
   class="py-4 px-4 max-w-3xl mx-auto my-10 bg-neutral-50 shadow-2xl dark:bg-neutral-800"
 >
   <article>
+    <div class="flex flex-row">
+
     <h1 class="fs-01 text-start">{title}</h1>
+    <Bookmark contentId={$page.url.pathname} />
+    </div>
     {#if "parent" in data}
-      <Breadcrumbs steps={data.parent} />
+      <Breadcrumbs steps={data?.parent || []} />
     {/if}
     {#if "content" in data}
-      <NotionBlocks blocks={data?.content?.results} />
+      <NotionBlocks blocks={data?.page?.content?.results} />
     {/if}
   </article>
   <NotionRelations properties={relationProperties} />
@@ -49,10 +63,8 @@
     <span
       >OSL hub is an evolving content database. If you've spotted an error or
       want to contribute, please go to our
-      <a
-        href={`https://openspatial.notion.site/${data.page.url.split(
-          "https://www.notion.so/"
-        )}`}
+      <!-- @ts-ignore -->
+      <a href={`https://openspatial.notion.site/${(data?.page?.url || "").split("https://www.notion.so/")}`}
         class="alert-link">notion site</a
       > and comment to suggest changes.</span
     >

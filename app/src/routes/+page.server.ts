@@ -1,5 +1,5 @@
 import type { PageLoad } from './page/$types';
-import notion from '../utils/NotionClient';
+import notion from '../lib/utils/NotionClient';
 
 
 export const load: PageLoad = async () => {

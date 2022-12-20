@@ -3,7 +3,7 @@ import type {
 	PartialPageObjectResponse
 } from '@notionhq/client/build/src/api-endpoints';
 import type { ErrorSpec } from 'src/types/error';
-import type { ParentBreadcrumbSpec } from 'src/utils/NotionClient';
+import type { ParentBreadcrumbSpec } from '$lib/utils/NotionClient';
 
 export type DatabaseResponse =
 	| ({

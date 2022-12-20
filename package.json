@@ -12,6 +12,8 @@
 		"dev-app": "yarn workspace app dev",
 		"dev-cache": "yarn workspace cache start",
 		"dev-bookmark": "yarn workspace bookmark start",
+		"deploy-cache": "yarn workspace cache deploy",
+		"deploy-bookmark": "yarn workspace bookmark deploy",
 		"dev": "concurrently \"yarn:dev-*\""
 	},
 	"devDependencies": {

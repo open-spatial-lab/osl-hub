@@ -1,10 +1,8 @@
 import { error } from '@sveltejs/kit';
-import NotionClient from '../../../utils/NotionClient';
-import { SECRET_NOTION_KEY, SECRET_ROOT_PAGE } from '$env/static/private';
 import type { PageServerLoad } from './$types';
 import type { DatabaseResponse } from './types';
 import type { ErrorSpec } from '../../../types/error';
-import notion from '../../../utils/NotionClient';
+import notion from '$lib/utils/NotionClient';
 
 export const load: PageServerLoad = async ({ params }): Promise<DatabaseResponse | ErrorSpec> => {
     const { id } = params;

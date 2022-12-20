@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ParentBreadcrumbSpec } from 'src/utils/NotionClient';
+	import type { ParentBreadcrumbSpec } from '$lib/utils/NotionClient';
 	import { Breadcrumb, Crumb } from '@skeletonlabs/skeleton';
 	import Icon from '@iconify/svelte';
 

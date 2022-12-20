@@ -1,3 +1,4 @@
+import {authorize} from '../../common/authorize'
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
@@ -30,19 +31,13 @@ export default {
 		env: Env,
 		ctx: ExecutionContext
 	): Promise<Response> {
-
 		const {
 			HUBCACHE,
 			PRESHARED_AUTH_HEADER_KEY,
 			PRESHARED_AUTH_HEADER_VALUE
 		} = env
-		const { headers } = request
-		
-		if (headers.get(PRESHARED_AUTH_HEADER_KEY) !== PRESHARED_AUTH_HEADER_VALUE) {
-			return new Response("Sorry, you have supplied an invalid key.", {
-				status: 403,
-			});
-		}
+		authorize(request.headers, PRESHARED_AUTH_HEADER_KEY, PRESHARED_AUTH_HEADER_VALUE)
+
 		const params = new URL(request.url).searchParams
 		const [action, key] = [params.get("action"),params.get("key")]
 

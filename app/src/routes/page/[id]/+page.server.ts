@@ -1,5 +1,6 @@
+
 import { error } from '@sveltejs/kit';
-import notion, { type ServerGetPageContentResponse } from '../../../utils/NotionClient';
+import notion, { type ServerGetPageContentResponse } from '$lib/utils/NotionClient';
 import type { PageServerLoad } from './$types';
 import type { ErrorSpec } from '../../../types/error';
 
