@@ -14,6 +14,7 @@ class BookmarkManager {
     const response = await fetch(`${this.url}?action=checkBookmark&username=${this.username}&contentId=${id}`, {
       headers: this.requestHeaders,
     });
+    console.log(response.status === 200);
     return response.status === 200;
   }
   async addBookmark(id: string) {

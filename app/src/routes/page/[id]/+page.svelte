@@ -21,6 +21,7 @@
 
   $: contentId = $page.url.pathname;
   $: {
+    console.log(data)
     if (data.type === "success" && "properties" in data.page && "title" in data.page.properties.Name) {
       // const content = data?.page
       pageProps = {
