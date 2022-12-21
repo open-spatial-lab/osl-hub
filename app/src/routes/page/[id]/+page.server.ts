@@ -1,21 +1,24 @@
 
 import { error } from '@sveltejs/kit';
-import notion, { type ServerGetPageContentResponse } from '$lib/utils/NotionClient';
+import notion from '$lib/utils/NotionClient';
 import type { PageServerLoad } from './$types';
-import type { ErrorSpec } from '../../../types/error';
+import type { PageResponse } from './types';
 
-export const load: PageServerLoad = async ({ params }): Promise<ServerGetPageContentResponse | ErrorSpec> => {
+export const load: PageServerLoad = async ({ params }): Promise<PageResponse> => {
     const { id } = params;
     try {
-        const page  = await notion.getPageContent(id);
+        const page = await notion.getPageContent(id)
         if (!page) {
             throw error(404, 'Not found');
         }
-        return page
+        return {
+            type: "success",
+            ...page
+        }
     } catch (e) {
         return {
             type: "error",
             error: 'Not found'
         }
-    } 
+    }
 }
