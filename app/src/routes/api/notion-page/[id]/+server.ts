@@ -1,5 +1,6 @@
 import type { RequestHandler } from './$types';
-import notion from '../../../../lib/utils/NotionClient';
+import { error } from '@sveltejs/kit';
+import notion, { type ServerGetPageContentResponse } from '../../../../lib/utils/NotionClient';
 
 /** @type {import('./$types').RequestHandler} */
 export const GET: RequestHandler = async ({params}) => {

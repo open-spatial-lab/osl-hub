@@ -11,7 +11,6 @@
   import { scrollTo } from "$lib/scroll";
 
   export let data: HomePageSchema;
-
   const { databases } = data;
   const storeTab: Writable<string> = writable("learning");
   let entrypoint = "";
@@ -42,7 +41,7 @@
 </svelte:head>
 <div class="flex flex-col items-center min-h-screen">
   <div
-    class="flex-col flex max-w-screen-2xl relative justify-center align-center items-center min-h-screen space-y-20 px-8 lg:flex-row lg:space-x-2"
+    class="flex-col flex max-w-screen-2xl relative justify-center align-center items-center min-h-screen p-8 space-y-20 lg:p-0 lg:flex-row lg:space-x-2"
   >
     <GradientHeading
       tag="h1"
