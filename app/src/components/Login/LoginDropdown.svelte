@@ -22,10 +22,11 @@
     </button>
 
     <!-- Menu: set a matching 'data-menu-[menuId]' attribute -->
-    <div data-menu="login" class="text-left bg-primary-500 py-2 px-3 rounded-md shadow-md dark:shadow-neutral-600">
+    <div data-menu="login" class="text-left bg-primary-500 py-2 px-3 rounded-md shadow-md flex flex-col space-y-2 dark:shadow-neutral-600">
       <p><b>{name}</b></p>
       <p><i>{email}</i></p>
-      <a href="/auth/signout">Sign out</a>
+      <p><a class="underline" href="/bookmarks">Bookmarks</a></p>
+      <p><a class="underline" href="/auth/signout">Sign out</a></p>
     </div>
   </span>
 {:else}

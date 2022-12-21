@@ -28,6 +28,12 @@ class BookmarkManager {
     });
     return response.status === 200 ? false : null;
   }
+  async listBookmarks() {
+    const response = await fetch(`${this.url}?action=listBookmarks&username=${this.username}`, {
+      headers: this.requestHeaders,
+    });
+    return response.status === 200 ? response.json() : null;
+  }
 }
 
 export const getBookmarkClient = (username: string) => new BookmarkManager(BOOKMARK_URL, { [BOOKMARK_HEADER]: BOOKMARK_VALUE }, username);

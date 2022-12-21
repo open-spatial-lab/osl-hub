@@ -1,7 +1,7 @@
-import type { ErrorSpec } from "src/types/error";
 import type { ServerGetPageContentResponse } from "$lib/utils/NotionClient";
 import type { NotionRelationEntries } from "$components/NotionRelations/types";
 import type { ParentBreadcrumbSpec } from "$lib/utils/NotionClient";
+import type { ContentOrError } from "$types/responses";
 
 export type DisplaySchema = {
   title: string;
@@ -18,13 +18,5 @@ export type PageState = {
   notionUrl: string;
 };
 
-export type NotionContentOrError<T> =
-  | ({
-    type: "success";
-  } & T)
-  | ({
-    type: "error";
-  } & ErrorSpec);
 
-
-export type PageResponse = NotionContentOrError<ServerGetPageContentResponse>;
+export type PageResponse = ContentOrError<ServerGetPageContentResponse>;
