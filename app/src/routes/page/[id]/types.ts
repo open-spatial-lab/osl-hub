@@ -1,6 +1,6 @@
 import type { ErrorSpec } from "src/types/error";
 import type { ServerGetPageContentResponse } from "$lib/utils/NotionClient";
-import type { NotionRelationEntries } from "../../../components/NotionRelations/types";
+import type { NotionRelationEntries } from "$components/NotionRelations/types";
 import type { ParentBreadcrumbSpec } from "$lib/utils/NotionClient";
 
 export type DisplaySchema = {

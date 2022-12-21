@@ -1,14 +1,17 @@
 <script lang="ts">
   import { Alert } from "@skeletonlabs/skeleton";
-  import Breadcrumbs from "../../../components/Breadcrumbs.svelte";
+  import Breadcrumbs from "$components/Breadcrumbs.svelte";
   import type { PageResponse } from "./types";
-  import NotionBlocks from "../../../components/NotionBlocks";
-  import NotionRelations from "../../../components/NotionRelations/NotionRelations.svelte";
-  import Bookmark from "../../../components/Bookmarked";
+  import NotionBlocks from "$components/NotionBlocks";
+  import NotionRelations from "$components/NotionRelations/NotionRelations.svelte";
+  import Bookmark from "$components/Bookmarked";
   import { page } from "$app/stores";
+  import { onMount } from 'svelte';
+  import { scrollTo } from '$lib/utils/scroll';
   import type { PageState } from "./types";
 
   export let data: PageResponse;
+  onMount(() => scrollTo(0))
 
   const initialState: PageState = {
     title: "Open Spatial Lab Hub",

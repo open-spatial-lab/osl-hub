@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Breadcrumbs from '../../../components/Breadcrumbs.svelte';
-	import Entrycard from '../../../components/EntryCard/Entrycard.svelte';
+	import Breadcrumbs from '$components/Breadcrumbs.svelte';
+	import Entrycard from '$components/EntryCard/Entrycard.svelte';
 	import type { DatabaseResponse, DisplaySchema } from './types';
 	export let data: DatabaseResponse;
 	let cards: Array<Partial<DisplaySchema>> = [];

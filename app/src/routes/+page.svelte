@@ -1,14 +1,14 @@
 <script lang="ts">
-  import Card from "../components/DatabaseCard.svelte";
+  import Card from '$components/DatabaseCard.svelte'
   import { GradientHeading } from "@skeletonlabs/skeleton";
   import { TabGroup, Tab } from "@skeletonlabs/skeleton";
   import type { HomePageSchema } from "../types/block";
   import { writable, type Writable } from "svelte/store";
   import Typewriter from "svelte-typewriter";
   import Icon from "@iconify/svelte";
-  import IllustrationSvg from "../components/IllustrationSVG.svelte";
+  import IllustrationSvg from "$components/IllustrationSVG.svelte";
   import { Alert } from '@skeletonlabs/skeleton';
-  import { scrollTo } from "$lib/scroll";
+  import { scrollTo } from "$lib/utils/scroll";
 
   export let data: HomePageSchema;
 

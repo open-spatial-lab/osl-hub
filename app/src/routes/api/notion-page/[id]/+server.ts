@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types';
-import notion from '../../../../lib/utils/NotionClient';
+import notion from '$lib/utils/NotionClient';
 
 /** @type {import('./$types').RequestHandler} */
 export const GET: RequestHandler = async ({params}) => {

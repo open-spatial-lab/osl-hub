@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { TabGroup, Tab } from '@skeletonlabs/skeleton';
 	import { writable, type Writable } from 'svelte/store';
-	import NotionRelationCard from '../NotionRelationCard';
+	import NotionRelationCard from '$components/NotionRelationCard';
     import  type {  NotionRelationEntries } from './types';
     // utils and types
     const findFirstRelation = (properties: NotionRelationEntries) => properties.length ? properties.find(f => f.relations.length)?.name || '' : '';
