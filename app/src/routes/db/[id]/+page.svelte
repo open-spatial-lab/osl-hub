@@ -14,12 +14,14 @@
 		});
 	}
 	$: title = 'parent' in data ? data.parent[data.parent.length - 1].name : 'Home';
+	$: description = 'parent' in data ? data.parent[data.parent.length - 1]?.description : '';
 </script>
 <svelte:head>
    <title>{title}</title>
 </svelte:head>
 <div class="p-4">
 	<h1 class="fs-01 text-start">{title}</h1>
+	<p>{description}</p>
 	{#if 'parent' in data}
 		<Breadcrumbs steps={data.parent} />
 	{/if}

@@ -18,6 +18,7 @@ import { withCache } from '$lib/utils/withCache';
 export type ParentBreadcrumbSpec = {
 	id: string;
 	name: string;
+	description?: string;
 	type: 'db' | 'page';
 };
 
@@ -65,18 +66,21 @@ class NotionClient {
 	async getDatabase(databaseId: string): Promise<ServerGetDatabaseResponse> {
 		const cacheString = `db-${databaseId}`;
 		const fetchDb = async () => {
-			const entries = await this.notion.databases.query({
-				database_id: databaseId
-			});
-
-			const database = await this.retreiveDatabase(databaseId);
+			const [entries, database] = await Promise.all([
+				this.notion.databases.query({
+					database_id: databaseId
+				}),
+				this.retreiveDatabase(databaseId)]
+			)
 			const data: ServerGetDatabaseResponse = {
 				results: entries.results,
 				parent: [
 					{
 						id: database.id,
 						// @ts-ignore
-						name: database?.title?.[0]?.plain_text || 'Unknown',
+						name: database?.title?.[0]?.plain_text || 'Database',
+						// @ts-ignore
+						description: database?.description?.[0]?.plain_text || '',
 						type: 'db'
 					}
 				]
@@ -96,19 +100,23 @@ class NotionClient {
 			let parent: ParentBreadcrumbSpec[] = [
 				{
 					id: page.id,
+					// @ts-ignore
 					name: page?.properties?.Name?.title?.[0]?.plain_text || 'Unknown',
 					type: 'page'
 				}
 			];
 
 			const database =
+			// @ts-ignore
 				page?.parent?.type === 'database_id'
+					// @ts-ignore
 					? await this.retreiveDatabase(page.parent.database_id)
 					: undefined;
 
 			if (database) {
 				parent.unshift({
 					id: database.id,
+					// @ts-ignore
 					name: database?.title?.[0]?.plain_text || 'Unknown',
 					type: 'db'
 				});
