@@ -34,6 +34,13 @@ class BookmarkManager {
     });
     return response.status === 200 ? response.json() : null;
   }
+  async toggleBookmark(id: string) {
+    const isBookmarked = await this.checkBookmark(id);
+    if (isBookmarked) {
+      return await this.removeBookmark(id);
+    }
+    return await this.addBookmark(id);
+  }
 }
 
 export const getBookmarkClient = (username: string) => new BookmarkManager(BOOKMARK_URL, { [BOOKMARK_HEADER]: BOOKMARK_VALUE }, username);

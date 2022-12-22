@@ -1,32 +1,37 @@
 <script lang="ts">
-  import { afterUpdate, onMount } from "svelte";
   import Icon from "@iconify/svelte";
-
+  import { enhance } from "$app/forms";
   export let contentId: string;
-  let isBookmarked: boolean;
-
-  const handleFetch = async (action = "checkBookmark") => {
-    const r = await fetch(
-      `/api/bookmark?contentId=${contentId}&action=${action}`
-    );
-    const data = await r.json();
-    isBookmarked = data.isBookmarked;
-  };
-
-  onMount(() => handleFetch());
-  afterUpdate(() => handleFetch());
+  export let initialBookmarkState: boolean;
+  let isBookmarked: boolean = initialBookmarkState || false;
+  $: isBookmarked = initialBookmarkState;
 </script>
 
-<button
-  class="btn btn-icon text-leg p-0"
-  on:click={() => handleFetch(isBookmarked ? "removeBookmark" : "addBookmark")}
+<form
+  method="POST"
+  action="/api/bookmark"
+  use:enhance={() => {
+    return async ({ result }) => {
+      // @ts-ignore
+      isBookmarked = result.data;
+    };
+  }}
 >
-  {#if isBookmarked}
-    <Icon
-      icon="material-symbols:star-rate-rounded"
-      class="w-8 h-8 text-accent-500"
-    />
-  {:else}
-    <Icon icon="material-symbols:star-rate-outline-rounded" class="w-8 h-8" />
-  {/if}
-</button>
+  <input class="hidden" name="contentId" bind:value={contentId} />
+  <input
+    class="hidden"
+    type="checkbox"
+    name="isBookmarked"
+    bind:value={isBookmarked}
+  />
+  <button class="btn btn-icon text-leg p-0">
+    {#if isBookmarked}
+      <Icon
+        icon="material-symbols:star-rate-rounded"
+        class="w-8 h-8 text-accent-500"
+      />
+    {:else}
+      <Icon icon="material-symbols:star-rate-outline-rounded" class="w-8 h-8" />
+    {/if}
+  </button>
+</form>

@@ -8,6 +8,7 @@
   import { page } from "$app/stores";
   import { onMount } from 'svelte';
   import { scrollTo } from '$lib/utils/scroll';
+  import KnowledgeGraph from "$components/KnowledgeGraph";
   import type { PageState } from "./types";
 
   export let data: PageResponse;
@@ -19,11 +20,13 @@
     breadcrumbs: [],
     blocks: [],
     notionUrl: "",
+    isBookmarked: false,
   };
   let pageProps: PageState = initialState;
 
   $: contentId = $page.url.pathname;
   $: {
+    scrollTo(0)
     if (data.type === "success" && "properties" in data.page && "title" in data.page.properties.Name) {
       // const content = data?.page
       pageProps = {
@@ -34,11 +37,13 @@
         notionUrl: `https://openspatial.notion.site/${(
           data.page.url || ""
         ).split("https://www.notion.so/")}`,
+        isBookmarked: data.isBookmarked
       };
     } else {
       pageProps = initialState;
     }
   }
+  
 
   function parseRelations(properties: any) {
     if (!properties) return [];
@@ -69,8 +74,9 @@
   <article>
     <div class="flex flex-row">
       <h1 class="fs-01 text-start">{pageProps.title}</h1>
-      <Bookmark {contentId} />
+      <Bookmark {contentId} initialBookmarkState={pageProps.isBookmarked} />
     </div>
+    <KnowledgeGraph relationProperties={pageProps.relationProperties} />
     <Breadcrumbs steps={pageProps.breadcrumbs} />
     <NotionBlocks blocks={pageProps.blocks} />
   </article>

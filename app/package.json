@@ -52,6 +52,7 @@
 		"@auth/sveltekit": "latest",
 		"@notionhq/client": "^2.2.2",
 		"@sagi.io/workers-kv": "^0.0.13",
+		"d3": "^7.8.0",
 		"keyv": "^4.5.2",
 		"svelte-typewriter": "^3.1.4"
 	},

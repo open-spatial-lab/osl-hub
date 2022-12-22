@@ -16,7 +16,8 @@ export type PageState = {
   breadcrumbs: ParentBreadcrumbSpec[];
   blocks: Array<any>;
   notionUrl: string;
+  isBookmarked: boolean;
 };
 
 
-export type PageResponse = ContentOrError<ServerGetPageContentResponse>;
+export type PageResponse = ContentOrError<ServerGetPageContentResponse & {isBookmarked: boolean}>;
