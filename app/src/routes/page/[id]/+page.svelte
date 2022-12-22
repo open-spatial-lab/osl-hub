@@ -8,8 +8,10 @@
   import { page } from "$app/stores";
   import { onMount } from 'svelte';
   import { scrollTo } from '$lib/utils/scroll';
+  import { parseRelations } from "$lib/utils/relations"
   import KnowledgeGraph from "$components/KnowledgeGraph";
   import type { PageState } from "./types";
+  import Icon from "@iconify/svelte";
 
   export let data: PageResponse;
   onMount(() => scrollTo(0))
@@ -23,6 +25,7 @@
     isBookmarked: false,
   };
   let pageProps: PageState = initialState;
+  let showKnowledgeGraph: boolean = false;
 
   $: contentId = $page.url.pathname;
   $: {
@@ -43,26 +46,6 @@
       pageProps = initialState;
     }
   }
-  
-
-  function parseRelations(properties: any) {
-    if (!properties) return [];
-    const relations = [];
-    const entries = Object.entries(properties) as [
-      string,
-      { type: string; relation: { id: string }[] }
-    ][];
-
-    for (const [key, value] of entries) {
-      if (value.type === "relation") {
-        relations.push({
-          name: key,
-          relations: value.relation,
-        });
-      }
-    }
-    return relations;
-  }
 </script>
 
 <svelte:head>
@@ -75,8 +58,20 @@
     <div class="flex flex-row">
       <h1 class="fs-01 text-start">{pageProps.title}</h1>
       <Bookmark {contentId} initialBookmarkState={pageProps.isBookmarked} />
+      <button on:click={() => showKnowledgeGraph = !showKnowledgeGraph}>
+        {#if showKnowledgeGraph}
+        <Icon
+          icon="mdi:graph"
+          class="w-8 h-8 text-accent-500"
+        />
+      {:else}
+        <Icon icon="mdi:graph-outline" class="w-8 h-8" />
+      {/if}
+      </button>
     </div>
-    <KnowledgeGraph relationProperties={pageProps.relationProperties} />
+    {#if showKnowledgeGraph}
+      <KnowledgeGraph relationProperties={pageProps.relationProperties} />
+    {/if}
     <Breadcrumbs steps={pageProps.breadcrumbs} />
     <NotionBlocks blocks={pageProps.blocks} />
   </article>
