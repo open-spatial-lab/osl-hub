@@ -211,6 +211,19 @@ export default {
         await BOOKMARK.delete(`${username}/collections/${collection}`);
         return new Response("Collection removed", { status: 200 });
       }
+      case "checkIsInCollection": {
+        const contentID = params.get("contentId")
+        const collections = await BOOKMARK.get(`${username}/collections`);
+        if (collections === null) {
+          return new Response(`{}`, { status: 200 });
+        }
+        const collectionList: CollectionSchema[] = JSON.parse(collections);
+        const mappedCollections = collectionList.map(f => ({
+          name: f.name,
+          included: Boolean(f.bookmarks.find(b => b.id === contentID))
+        }))
+        return new Response(JSON.stringify(mappedCollections), { status: 200 });
+      }
     }
 
     return new Response("Invalid request", { status: 400 });

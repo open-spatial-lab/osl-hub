@@ -9,7 +9,7 @@
 <div class="max-w-screen-2xl m-auto text-center flex flex-col space-y-8">
     {#if data.type === "success"}
         <h1>Your bookmarks</h1>
-        {#if data.bookmarks.length}
+        {#if data?.bookmarks?.length}
             {#each data.bookmarks as bookmark}
                 <div class="">
                     <NotionRelationCard id={bookmark.id.split("page/")[1]} />

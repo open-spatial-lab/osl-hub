@@ -19,7 +19,7 @@ export const bookmarkActions = async (
     const username = session?.user?.email!;
     const bookmarkClient = getBookmarkClient(username);
     let isBookmarked: boolean | null = false;
-    console.log("action", action, "contentId", contentId)
+    
     switch (action) {
       case "checkBookmark":
         isBookmarked = await bookmarkClient.checkBookmark(contentId!);
