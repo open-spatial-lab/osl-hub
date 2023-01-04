@@ -49,7 +49,7 @@
 	"type": "module",
 	"dependencies": {
 		"@auth/core": "latest",
-		"@auth/sveltekit": "latest",
+		"@auth/sveltekit": "^0.1.12",
 		"@notionhq/client": "^2.2.2",
 		"@sagi.io/workers-kv": "^0.0.13",
 		"d3": "^7.8.0",
