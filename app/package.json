@@ -48,7 +48,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@auth/core": "latest",
+		"@auth/core": "^0.2.5",
 		"@auth/sveltekit": "^0.1.12",
 		"@notionhq/client": "^2.2.2",
 		"@sagi.io/workers-kv": "^0.0.13",
