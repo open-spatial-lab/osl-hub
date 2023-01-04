@@ -37,8 +37,8 @@
 </script>
 
 <svelte:head>
-  <title>osl hub</title>
-  <meta name="description" content="Svelte demo app" />
+  <title>The Hub :: Open Spatial Lab</title>
+  <meta name="description" content="The Hub is a collection of data science resources networked together by topic, method, and tools. Managed by the Open Spatial Lab at UChicago." />
 </svelte:head>
 <div class="flex flex-col items-center min-h-screen">
   <div
