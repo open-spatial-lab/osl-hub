@@ -5,14 +5,14 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@auth/core@latest, @auth/core@npm:0.1.4":
-  version: 0.1.4
-  resolution: "@auth/core@npm:0.1.4"
+"@auth/core@npm:0.2.5, @auth/core@npm:^0.2.5":
+  version: 0.2.5
+  resolution: "@auth/core@npm:0.2.5"
   dependencies:
-    "@panva/hkdf": 1.0.2
+    "@panva/hkdf": ^1.0.2
     cookie: 0.5.0
-    jose: 4.11.1
-    oauth4webapi: 2.0.5
+    jose: ^4.11.1
+    oauth4webapi: ^2.0.6
     preact: 10.11.3
     preact-render-to-string: 5.2.3
   peerDependencies:
@@ -20,19 +20,19 @@ __metadata:
   peerDependenciesMeta:
     nodemailer:
       optional: true
-  checksum: 64854404ea1883e0deb5535b34bed95cd43fc85094aeaf4f15a79e14045020eb944f844defe857edfc8528a0a024be89cbb2a3069dedef0e9217a74ca6c3eb79
+  checksum: 4937518b1d4c89b975f354f988ea321ee1d90195fc3cba092b4320f50aa88061594afe9292446113f12336402ab071221f4d1294f43cfe2662740e29633f0d12
   languageName: node
   linkType: hard
 
-"@auth/sveltekit@latest":
-  version: 0.1.6
-  resolution: "@auth/sveltekit@npm:0.1.6"
+"@auth/sveltekit@npm:^0.1.12":
+  version: 0.1.12
+  resolution: "@auth/sveltekit@npm:0.1.12"
   dependencies:
-    "@auth/core": 0.1.4
+    "@auth/core": 0.2.5
   peerDependencies:
     "@sveltejs/kit": ^1.0.0
     svelte: ^3.54.0
-  checksum: 921b84fcacd6e6b379d988467bb707478047d8cb1b45ca161119632306c8bef88146779543fef4807b6c0de2e06d7a76f5d8952fe5cd893e55ca35571b0ec09c
+  checksum: 9261bcf2b5301d4aeaec164f8ee278852a416669ada0130520c83d495bc38edf17bca977a7455bfbe58d616f435d91ef8d45ff8cbe43dd3848fe3dd97b46906e
   languageName: node
   linkType: hard
 
@@ -636,7 +636,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@panva/hkdf@npm:1.0.2, @panva/hkdf@npm:^1.0.1":
+"@panva/hkdf@npm:^1.0.1, @panva/hkdf@npm:^1.0.2":
   version: 1.0.2
   resolution: "@panva/hkdf@npm:1.0.2"
   checksum: 75183b4d5ea816ef516dcea70985c610683579a9e2ac540c2d59b9a3ed27eedaff830a43a1c43c1683556a457c92ac66e09109ee995ab173090e4042c4c4bb03
@@ -1151,8 +1151,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:app"
   dependencies:
-    "@auth/core": latest
-    "@auth/sveltekit": latest
+    "@auth/core": ^0.2.5
+    "@auth/sveltekit": ^0.1.12
     "@iconify/svelte": ^3.0.1
     "@notion-stuff/blocks-html-parser": ^6.0.0
     "@notion-stuff/blocks-markdown-parser": ^6.0.0
@@ -3239,10 +3239,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:4.11.1, jose@npm:^4.10.0, jose@npm:^4.9.3":
+"jose@npm:^4.10.0, jose@npm:^4.9.3":
   version: 4.11.1
   resolution: "jose@npm:4.11.1"
   checksum: cd15cba258d0fd20f6168631ce2e94fda8442df80e43c1033c523915cecdf390a1cc8efe0eab0c2d65935ca973d791c668aea80724d2aa9c2879d4e70f3081d7
+  languageName: node
+  linkType: hard
+
+"jose@npm:^4.11.1":
+  version: 4.11.2
+  resolution: "jose@npm:4.11.2"
+  checksum: bc9b2271c31683603857b2fd2903afa29f826fffd4bcefc0845355ed86995def87eaadf502033207996109d76698c912e5a986e279326d9629321a50504fe466
   languageName: node
   linkType: hard
 
@@ -3912,10 +3919,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oauth4webapi@npm:2.0.5":
-  version: 2.0.5
-  resolution: "oauth4webapi@npm:2.0.5"
-  checksum: 32d0cb7b1cca42d51dfb88075ca2d69fe33172a807e8ea50e317d17cab3bc80588ab8ebcb7eb4600c371a70af4674595b4b341daf6f3a655f1efa1ab715bb6c9
+"oauth4webapi@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "oauth4webapi@npm:2.0.6"
+  checksum: daf1c2201dc0ff86fcd11a31de241bd70cf5030213c0da015ca886924eac27e466bc7cd4c470172f9cfb312ce6e156f324d0c8afff9fdea9da8526bfa78c0cde
   languageName: node
   linkType: hard
 
