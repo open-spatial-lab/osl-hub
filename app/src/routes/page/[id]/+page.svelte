@@ -70,7 +70,7 @@
       </button>
     </div>
     {#if showKnowledgeGraph}
-      <KnowledgeGraph relationProperties={pageProps.relationProperties} />
+      <KnowledgeGraph contentId={contentId} />
     {/if}
     <Breadcrumbs steps={pageProps.breadcrumbs} />
     <NotionBlocks blocks={pageProps.blocks} />
