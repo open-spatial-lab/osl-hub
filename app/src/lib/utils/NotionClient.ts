@@ -230,33 +230,30 @@ class NotionClient {
 		}
 		return resultAsDict
 	}
+	spiderNodes(mutableNodes: Node[], mutableLinks: Link[], mutableIds: string[], allNodes: Node[], allLinks: Link[]){
+		for (let i=0; i<allLinks.length; i++){
+			const link = allLinks[i]
+			if (mutableIds.includes(link.source)){
+				!mutableIds.includes(link.target) && mutableNodes.push(allNodes.find(node => node.id === link.target)!)
+				mutableLinks.push(link)
+				mutableIds.push(link.target)
+			}
+		}
+	}
 	async spiderPage(pageId: string): Promise<{
 		nodes: Node[];
 		links: Link[];
 	}> {
-		const { parent, page } = await this.getPage(pageId);
-		const dbName = parent[0].name;
-
+		const { page } = await this.getPage(pageId);
 		const databases = await this.getChildDatabases()
-
-		// const initialFilter = this.generateFilter({
-		// 	[dbName]: { results: [{ id: pageId }] }
-		// })
 		const initialResult = await this.queryDatabases({}, databases, 0)
-
-		// let accumulatedResults = [initialResult];
-		// let previousResults = initialResult;
-
-		// for (let i = 1; i < 5; i++) {
-		// 	const filters = this.generateFilter(previousResults)
-		// 	const result = await this.queryDatabases({ or: filters }, databases, i)
-		// 	accumulatedResults.push(result);
-		// 	previousResults = result
-		// }
 		const {
-			nodes,
-			links
+			nodes: allNodes,
+			links: allLinks
 		} = this.buildNodes(initialResult)
+
+		let nodes: Node[] = []
+		let links: Link[] = []
 
 		nodes.push({
 			id: pageId,
@@ -265,20 +262,14 @@ class NotionClient {
 			type: "root"
 		})
 
-		// let nodes: Node[] = [];
-		// let links: Link[] = [];
-		
-		
-		// let nodeList: string[] = [];
-		// const dataEntries = Object.entries(initialResult)
-		// for (let i = 0; i < dataEntries.length; i++) {
-		// 	const [type, value] = dataEntries[i];
-		// 	const { results } = value;
-		// 	for (let j = 0; j < results.length; j++) {
+		let ids = [pageId]
+		let depth = 0;
+		const maxDepth = 5;
 
-		// 	}
-		// }
-
+		while (depth < maxDepth) {
+			this.spiderNodes(nodes, links, ids, allNodes, allLinks);
+			depth++;
+		}
 		return {
 			nodes,
 			links

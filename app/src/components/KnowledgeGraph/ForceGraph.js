@@ -11,11 +11,11 @@ export function renderForceGraph({
   nodeGroup, // given d in nodes, returns an (ordinal) value for color
   nodeGroups, // an array of ordinal values representing the node groups
   nodeTitle, // given d in nodes, a title string
-  nodeFill = "currentColor", // node stroke fill (if not using a group color encoding)
+  nodeFill = d => "currentColor", // node stroke fill (if not using a group color encoding)
   nodeStroke = "#fff", // node stroke color
   nodeStrokeWidth = 1.5, // node stroke width, in pixels
   nodeStrokeOpacity = 1, // node stroke opacity
-  nodeRadius = 5, // node radius, in pixels
+  nodeRadius = x => 5, // node radius, in pixels
   nodeStrength,
   linkSource = ({ source }) => source, // given d in links, returns a node identifier string
   linkTarget = ({ target }) => target, // given d in links, returns a node identifier string
@@ -24,17 +24,28 @@ export function renderForceGraph({
   linkStrokeWidth = 1.5, // given d in links, returns a stroke width in pixels
   linkStrokeLinecap = "round", // link stroke linecap
   linkStrength,
-  colors = d3.schemeTableau10, // an array of color strings, for the node groups
+  colors = {
+    "root": '#1f77b4',
+  },
+  // colors = d3.schemeTableau10, // an array of color strings, for the node groups
   width = 640, // outer width, in pixels
   height = 400, // outer height, in pixels
   invalidation, // when this promise resolves, stop the simulation
-  onMouseOver = () => { },
-  onClick = () => {}
+  onMouseOver = (f) => { },
+  onMouseOut = (f) => {},
+  onClick = (f) => { }
 } = {}) {
   // Compute values.
   const N = d3.map(nodes, nodeId).map(intern);
   const LS = d3.map(links, linkSource).map(intern);
   const LT = d3.map(links, linkTarget).map(intern);
+
+  const colorsParsed = Object.keys(colors).map((key) => ({
+    key: key,
+    // @ts-ignore
+    value: colors[key]
+  }))
+
   if (nodeTitle === undefined) nodeTitle = (_, i) => N[i];
   const T = nodeTitle == null ? null : d3.map(nodes, nodeTitle);
   const G = nodeGroup == null ? null : d3.map(nodes, nodeGroup).map(intern);
@@ -42,14 +53,14 @@ export function renderForceGraph({
   const L = typeof linkStroke !== "function" ? null : d3.map(links, linkStroke);
 
   // Replace the input nodes and links with mutable objects for the simulation.
-  nodes = d3.map(nodes, (_, i) => ({ id: N[i] }));
+  nodes = d3.map(nodes, (_, i) => ({ id: N[i], ...nodes[i] }));
   links = d3.map(links, (_, i) => ({ source: LS[i], target: LT[i] }));
 
   // Compute default domains.
   if (G && nodeGroups === undefined) nodeGroups = d3.sort(G);
 
-  // Construct the scales.
-  const color = nodeGroup == null ? null : d3.scaleOrdinal(nodeGroups, colors);
+  // // Construct the scales.
+  // const color = nodeGroup == null ? null : d3.scaleOrdinal(nodeGroups, colors);
 
   // Construct the forces.
   const forceNode = d3.forceManyBody();
@@ -62,7 +73,7 @@ export function renderForceGraph({
     .force("charge", forceNode)
     .force("center", d3.forceCenter())
     .on("tick", ticked);
-  
+
   const svg = d3.select(el)
     .html('')
     .append("svg")
@@ -79,9 +90,8 @@ export function renderForceGraph({
     .selectAll("line")
     .data(links)
     .join("line");
-
+    
   const node = svg.append("g")
-    .attr("fill", nodeFill)
     .attr("stroke", nodeStroke)
     .attr("stroke-opacity", nodeStrokeOpacity)
     .attr("stroke-width", nodeStrokeWidth)
@@ -89,14 +99,67 @@ export function renderForceGraph({
     .data(nodes)
     .join("circle")
     .attr("r", nodeRadius)
+    .attr("fill", nodeFill)
     .attr("id", d => d.id)
     .call(drag(simulation))
     .on("mouseover", onMouseOver)
+    .on("mouseout", onMouseOut)
     .on("click", onClick)
+    .style("cursor", "pointer");
+
+  const text = svg.append("g")
+    .attr("class", "non-interactive")
+    .selectAll("text")
+    .data(nodes)
+    .enter()
+    .append("text")
+    .attr("class", "label")
+    .style("font-weight", 900)
+    .attr("x", d => d.x)
+    .attr("y", d => d.y - 20)
+    .text(d => d.name)
+    .attr("opacity", d => d.type === "root" ? 1 : 0)
+    .attr("id", d => `text-${d.id}`)
+    // .attr("font-family", "sans-serif")
+    // .attr("font-size", "12px")
+    .attr("text-anchor", "middle")
+  
+  const legend = svg.append("g")
+    .attr("fill", "white")
+    .attr("transform", `translate(-${width/2 - 20}, 20)`)
+    .selectAll("g")
+    .data(colorsParsed)
+    .enter()
+    .append("g")
+    .attr("transform", (d, i) => `translate(0, ${i * 20})`)
+    .attr("x", 0)
+    .attr("y", 9)
+    .on("mouseover", (_, i) => {
+      node.attr("fill", d => d.type === i.key ? i.value : "#ddd")
+      text.attr("opacity", d => d.type === i.key ? 1 : 0)
+    })
+    .on("mouseout", () => {
+      node.attr("fill", nodeFill)
+      text.attr("opacity", d => d.type === "root" ? 1 : 0)
+    })
+
+  legend
+    .append("text")
+    .attr("class", "legend")
+    .style("font", "12px sans-serif")
+    .attr("transform", "translate(15, 4)")
+    .text(d => d.key === "root" ? nodes[0].name : d.key); 
+
+  legend
+    .append("circle")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", 5)
+    .attr("fill", d => d.value)
 
   if (W) link.attr("stroke-width", ({ index: i }) => W[i]);
   if (L) link.attr("stroke", ({ index: i }) => L[i]);
-  if (G) node.attr("fill", ({ index: i }) => color(G[i]));
+  // if (G) node.attr("fill", ({ index: i }) => color(G[i]));
   if (T) node.append("title").text(({ index: i }) => T[i]);
   if (invalidation != null) invalidation.then(() => simulation.stop());
 
@@ -114,6 +177,10 @@ export function renderForceGraph({
     node
       .attr("cx", d => d.x)
       .attr("cy", d => d.y);
+
+    text
+      .attr("x", d => d.x)
+      .attr("y", d => d.y - 20)
   }
 
   function drag(simulation) {
@@ -140,5 +207,5 @@ export function renderForceGraph({
       .on("end", dragended);
   }
 
-  return Object.assign(svg.node(), { scales: { color } });
+  return Object.assign(svg.node(), { scales: {  } });
 }

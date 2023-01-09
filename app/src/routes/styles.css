@@ -120,3 +120,21 @@ div.app-bar {
 	z-index:10;
 	top:0;
 }
+
+.non-interactive {
+	pointer-events: none;
+}
+/* SVG styling */
+
+text.legend, text.label {
+	fill: black;
+	stroke: white;
+	stroke-width:1px;
+	stroke-linecap: butt;
+	stroke-linejoin: miter;
+	paint-order: stroke;
+}
+html.dark text.legend, html.dark text.label {
+	fill: white;
+	stroke: black;
+}
