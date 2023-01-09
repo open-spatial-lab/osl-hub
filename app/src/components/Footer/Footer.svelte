@@ -27,6 +27,29 @@
       link: "https://github.com/open-spatial-lab",
     },
   ];
+
+  const NavColumn2: FooterColumn = [
+    {
+      header: "User",
+    },
+    {
+      text: "Login",
+      link: "/auth/signin",
+    },
+    {
+      text: "Bookmarks",
+      link: "/bookmarks",
+    },
+    {
+      text: "Privacy Policy",
+      link: "/privacy",
+    },
+    {
+      text: "Terms of Service",
+      link: "/tos",
+    },
+  ];
+
   const UChicagoColumn: FooterColumn = [
     {
       header: "University of Chicago",
@@ -35,25 +58,25 @@
       link: "https://datascience.uchicago.edu/",
       image: dsiLogo,
       text: "The Data Sceince Institute",
-      class: "block dark:hidden"
+      class: "block dark:hidden",
     },
     {
       image: csdsLogo,
       text: "The Center for Spatial Data Science",
       link: "https://spatial.uchicago.edu/",
-      class: "block dark:hidden"
+      class: "block dark:hidden",
     },
     {
       link: "https://datascience.uchicago.edu/",
       image: dsiLogoDark,
       text: "The Data Sceince Institute",
-      class: "hidden no-light dark:block"
+      class: "hidden no-light dark:block",
     },
     {
       image: csdsLogoDark,
       text: "The Center for Spatial Data Science",
       link: "https://spatial.uchicago.edu/",
-      class: "hidden no-light dark:block"
+      class: "hidden no-light dark:block",
     },
   ];
   const AcknowledgementsColumn: FooterColumn = [
@@ -72,13 +95,16 @@
   ];
   const FooterContent: Array<FooterColumn> = [
     NavColumn,
+    NavColumn2,
     UChicagoColumn,
     AcknowledgementsColumn,
   ];
 </script>
 
 <footer class=" bg-slate-50 py-5 dark:bg-slate-800">
-  <div class="grid grid-cols-1 max-w-screen-2xl m-auto md:grid-cols-3 md:text-center">
+  <div
+    class="grid grid-cols-1 max-w-screen-2xl m-auto md:grid-cols-4 md:text-center"
+  >
     {#each FooterContent as FooterColumn}
       <ul class="list">
         {#each FooterColumn as Entry}
@@ -107,5 +133,9 @@
   .footer-image {
     max-width: 100%;
     max-height: 125px;
+  }
+  .list li {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 </style>
