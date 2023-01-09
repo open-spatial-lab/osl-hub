@@ -35,13 +35,15 @@
                 }
 
     const handleMouseOver = (node: MouseEvent) => {
-        const text = node.target?.id;
+        const text = node?.target && "id" in node?.target ? node.target?.id : null;
+        if (!text) return;
         const textEl = document.querySelector(`#text-${text}`);
         textEl?.setAttribute("opacity", '1')
     }
 
     const handleMouseOff = (node: MouseEvent) => {
-        const text = node.target?.id;
+        const text = node?.target && "id" in node?.target ? node.target?.id : null;
+        if (!text) return;
         const textEl = document.querySelector(`#text-${text}`);
         textEl?.setAttribute("opacity", '0')
     }
