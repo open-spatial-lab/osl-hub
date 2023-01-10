@@ -26,6 +26,7 @@ function Google(options: any) {
     options,
   };
 }
+
 function Facebook(options: any) {
   return {
     id: "facebook",
@@ -61,6 +62,7 @@ function Facebook(options: any) {
     options,
   };
 }
+
 let providers: Array<Provider<Profile>> = [];
 
 const providerInfo: Array<{
@@ -68,11 +70,11 @@ const providerInfo: Array<{
   clientSecret: string;
   provider: Function;
 }> = [
-  {
-    clientId: GITHUB_ID,
-    clientSecret: GITHUB_SECRET,
-    provider: GitHub
-  },
+  // {
+  //   clientId: GITHUB_ID,
+  //   clientSecret: GITHUB_SECRET,
+  //   provider: GitHub
+  // },
   {
     clientId: GOOGLE_ID,
     clientSecret: GOOGLE_SECRET,
