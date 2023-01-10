@@ -1,5 +1,5 @@
 import { SvelteKitAuth } from "@auth/sveltekit";
-// import GitHub from "@auth/core/providers/github";
+import GitHub from "@auth/core/providers/github";
 // import Google from "@auth/core/providers/google";
 // import Facebook from "@auth/core/providers/facebook";
 import type { Provider } from "@auth/core/providers";
@@ -7,8 +7,6 @@ import type { Profile } from "@auth/core/types";
 
 // @ts-ignore
 import { GITHUB_ID, GITHUB_SECRET, GOOGLE_ID, GOOGLE_SECRET, FACEBOOK_ID, FACEBOOK_SECRET } from "$env/static/private";
-
-console.log(Facebook.toString());
 
 // WORKAROUND FOR BROKEN SVGS
 function Google(options: any) {
@@ -70,11 +68,11 @@ const providerInfo: Array<{
   clientSecret: string;
   provider: Function;
 }> = [
-  // {
-  //   clientId: GITHUB_ID,
-  //   clientSecret: GITHUB_SECRET,
-  //   provider: GitHub
-  // },
+  {
+    clientId: GITHUB_ID,
+    clientSecret: GITHUB_SECRET,
+    provider: GitHub
+  },
   {
     clientId: GOOGLE_ID,
     clientSecret: GOOGLE_SECRET,
