@@ -12,6 +12,7 @@
   import KnowledgeGraph from "$components/KnowledgeGraph";
   import type { PageState } from "./types";
   import Icon from "@iconify/svelte";
+  import Collections from "$components/Collections/Collections.svelte";
 
   export let data: PageResponse;
   onMount(() => scrollTo(0))
@@ -58,6 +59,7 @@
     <div class="flex flex-row">
       <h1 class="fs-01 text-start">{pageProps.title}</h1>
       <Bookmark {contentId} initialBookmarkState={pageProps.isBookmarked} />
+      <Collections {contentId} />
       <button on:click={() => showKnowledgeGraph = !showKnowledgeGraph}>
         {#if showKnowledgeGraph}
         <Icon

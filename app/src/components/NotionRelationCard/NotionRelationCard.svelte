@@ -1,5 +1,6 @@
 <script lang="ts">
   export let id: string;
+  export let prefix: string = 'page'
   $: content = fetchPage(id);
   async function fetchPage(id: string) {
     const res = await fetch(`/api/notion-page/${id}`);
@@ -13,7 +14,7 @@
     <p>Loading connection...</p>
   {:then content}
     {#if content?.page?.properties?.Name?.title?.[0]?.plain_text}
-      <a href={`/page/${id}`} class="d-block ">
+      <a href="/{prefix}/{id}" class="d-block ">
         <b> {content.page.properties.Name.title[0].plain_text}</b></a
       >
     {/if}

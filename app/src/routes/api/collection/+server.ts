@@ -24,3 +24,6 @@ export const GET: RequestHandler = async ({locals, url}) => {
     const collectionClient = getCollectionClient(username, action, contentId, collection);
     return await collectionClient.handle();
 }
+
+// @ts-ignore
+export const POST = GET

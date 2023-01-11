@@ -26,6 +26,7 @@
       <p><b>{name}</b></p>
       <p><i>{email}</i></p>
       <p><a class="underline" href="/bookmarks">Bookmarks</a></p>
+      <p><a class="underline" href="/collections">Collections</a></p>
       <p><a class="underline" href="/auth/signout">Sign out</a></p>
     </div>
   </span>

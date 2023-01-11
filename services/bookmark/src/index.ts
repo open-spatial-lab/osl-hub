@@ -247,20 +247,19 @@ export default {
       case "checkCollectionStatus": {
         const contentID = params.get("contentId");
         const userCollections = await BOOKMARK.get(`${username}-collections`);
-        let collectionInclusions: { [key: string]: boolean } = {};
         if (userCollections === null) {
           return new Response(`${userCollections}`, { status: 200 });
         }
         const collectionList: CollectionSchema[] = JSON.parse(userCollections);
+        let collectionInclusions: { name: string, status: boolean }[] = [];
         for (let i = 0; i < collectionList.length; i++) {
           const collection = await BOOKMARK.get(
             `${username}-collections-${collectionList[i]}`
           ).then((r) => (r ? JSON.parse(r) : {}));
-          collectionInclusions[collection.name] = Boolean(
-            collection?.bookmarks.find(
-              (b: { id: string }) => b.id === contentID
-            )
-          );
+          collectionInclusions.push({
+            name: collection.name,
+            status: Boolean(collection?.bookmarks.find((b: { id: string }) => b.id === contentID))
+          })
         }
         return new Response(JSON.stringify(collectionInclusions), {
           status: 200,
