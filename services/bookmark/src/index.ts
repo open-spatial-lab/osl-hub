@@ -68,7 +68,10 @@ export default {
         }
         const bookmarks = await BOOKMARK.get(`${username}/bookmarks`);
         if (bookmarks === null) {
-          await BOOKMARK.put(`${username}/bookmarks`, JSON.stringify([{ id: bookmark }]));
+          await BOOKMARK.put(
+            `${username}/bookmarks`,
+            JSON.stringify([{ id: bookmark }])
+          );
           return new Response("Bookmark added", { status: 200 });
         } else {
           const previous: BookmarkSchema = JSON.parse(bookmarks);
@@ -100,7 +103,7 @@ export default {
         return new Response("Bookmark removed", { status: 200 });
       }
       case "listCollections": {
-        const collections = await BOOKMARK.get(`${username}/collections`);
+        const collections = await BOOKMARK.get(`${username}-collections`);
         if (collections === null) {
           return new Response("No collections found", { status: 404 });
         }
@@ -114,7 +117,7 @@ export default {
           });
         }
         const kv_entry = await BOOKMARK.get(
-          `${username}/collections/${collection}`
+          `${username}-collections-${collection}`
         );
         if (kv_entry === null) {
           return new Response("No collection found", { status: 404 });
@@ -128,17 +131,25 @@ export default {
             status: 400,
           });
         }
-        const kv_entry = await BOOKMARK.get(
-          `${username}/collections/${collection}`
-        );
-        if (kv_entry !== null) {
+        const kv_entry = await BOOKMARK.get(`${username}-collections`);
+        const collections: Array<string> =
+          kv_entry === null ? [] : JSON.parse(kv_entry);
+        if (collections.includes(collection)) {
           return new Response("Collection already exists", { status: 400 });
         } else {
+          const collectionList = [...collections, collection];
           await BOOKMARK.put(
-            `${username}/collections/${collection}`,
-            JSON.stringify({ name: collection, bookmarks: [] })
+            `${username}-collections`,
+            JSON.stringify(collectionList)
+          ),
+            await BOOKMARK.put(
+              `${username}-collections-${collection}`,
+              JSON.stringify({ name: collection, bookmarks: [] })
+            );
+          return new Response(
+            JSON.stringify({ type: "Success", collectionList }),
+            { status: 200 }
           );
-          return new Response("Collection added", { status: 200 });
         }
       }
       case "addToCollection": {
@@ -151,10 +162,10 @@ export default {
           );
         }
         const kv_entry = await BOOKMARK.get(
-          `${username}/collections/${collection}`
+          `${username}-collections-${collection}`
         );
         if (kv_entry === null) {
-          return new Response("No collection found", { status: 404 });
+          return new Response("No collection found", { status: 400 });
         }
         const previous: CollectionSchema = JSON.parse(kv_entry);
         if (previous.bookmarks.find((b) => b.id === bookmark)) {
@@ -164,7 +175,7 @@ export default {
           ...previous,
           bookmarks: [...previous.bookmarks, { id: bookmark }],
         });
-        await BOOKMARK.put(`${username}/collections/${collection}`, updated);
+        await BOOKMARK.put(`${username}-collections-${collection}`, updated);
         return new Response("Bookmark added to collection", { status: 200 });
       }
       case "removeFromCollection": {
@@ -177,7 +188,7 @@ export default {
           );
         }
         const kv_entry = await BOOKMARK.get(
-          `${username}/collections/${collection}`
+          `${username}-collections-${collection}`
         );
         if (kv_entry === null) {
           return new Response("No collection found", { status: 404 });
@@ -190,7 +201,7 @@ export default {
           ...previous,
           bookmarks: previous.bookmarks.filter((b) => b.id !== bookmark),
         });
-        await BOOKMARK.put(`${username}/collections/${collection}`, updated);
+        await BOOKMARK.put(`${username}-collections-${collection}`, updated);
         return new Response("Bookmark removed from collection", {
           status: 200,
         });
@@ -202,30 +213,62 @@ export default {
             status: 400,
           });
         }
+        const userCollections = await BOOKMARK.get(
+          `${username}-collections`
+        ).then((r) => (r ? JSON.parse(r) : []));
         const kv_entry = await BOOKMARK.get(
-          `${username}/collections/${collection}`
+          `${username}-collections-${collection}`
         );
-        if (kv_entry === null) {
+        if (kv_entry === null || !userCollections?.includes(collection)) {
           return new Response("No collection found", { status: 404 });
         }
-        await BOOKMARK.delete(`${username}/collections/${collection}`);
+        await BOOKMARK.delete(`${username}-collections-${collection}`);
+        await BOOKMARK.put(
+          `${username}-collections`,
+          JSON.stringify(
+            userCollections.filter((c: string) => c !== collection)
+          )
+        );
         return new Response("Collection removed", { status: 200 });
       }
       case "checkIsInCollection": {
-        const contentID = params.get("contentId")
-        const collections = await BOOKMARK.get(`${username}/collections`);
+        const contentID = params.get("contentId");
+        const collections = await BOOKMARK.get(`${username}-collections`);
         if (collections === null) {
           return new Response(`{}`, { status: 200 });
         }
         const collectionList: CollectionSchema[] = JSON.parse(collections);
-        const mappedCollections = collectionList.map(f => ({
+        const mappedCollections = collectionList.map((f) => ({
           name: f.name,
-          included: Boolean(f.bookmarks.find(b => b.id === contentID))
-        }))
+          included: Boolean(f.bookmarks.find((b) => b.id === contentID)),
+        }));
         return new Response(JSON.stringify(mappedCollections), { status: 200 });
       }
+      case "checkCollectionStatus": {
+        const contentID = params.get("contentId");
+        const userCollections = await BOOKMARK.get(`${username}-collections`);
+        let collectionInclusions: { [key: string]: boolean } = {};
+        if (userCollections === null) {
+          return new Response(`${userCollections}`, { status: 200 });
+        }
+        const collectionList: CollectionSchema[] = JSON.parse(userCollections);
+        for (let i = 0; i < collectionList.length; i++) {
+          const collection = await BOOKMARK.get(
+            `${username}-collections-${collectionList[i]}`
+          ).then((r) => (r ? JSON.parse(r) : {}));
+          collectionInclusions[collection.name] = Boolean(
+            collection?.bookmarks.find(
+              (b: { id: string }) => b.id === contentID
+            )
+          );
+        }
+        return new Response(JSON.stringify(collectionInclusions), {
+          status: 200,
+        });
+      }
+      default: {
+        return new Response("Invalid request", { status: 400 });
+      }
     }
-
-    return new Response("Invalid request", { status: 400 });
   },
 };
