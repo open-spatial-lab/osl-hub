@@ -59,15 +59,15 @@
     <div class="flex flex-row">
       <h1 class="fs-01 text-start">{pageProps.title}</h1>
       <Bookmark {contentId} initialBookmarkState={pageProps.isBookmarked} />
-      <Collections {contentId} />
+      <Collections {contentId} title={pageProps.title} />
       <button on:click={() => showKnowledgeGraph = !showKnowledgeGraph}>
         {#if showKnowledgeGraph}
         <Icon
           icon="mdi:graph"
-          class="w-8 h-8 text-accent-500"
+          class="w-8 h-8 mx-2 text-accent-500"
         />
       {:else}
-        <Icon icon="mdi:graph-outline" class="w-8 h-8" />
+        <Icon icon="mdi:graph-outline" class="w-8 h-8 mx-2" />
       {/if}
       </button>
     </div>

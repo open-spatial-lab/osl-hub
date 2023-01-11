@@ -1,19 +1,17 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
   import Icon from "@iconify/svelte";
-  import { afterUpdate } from "svelte";
   import type { CollectionRowsSchema } from "./types";
 
   export let collections: CollectionRowsSchema = [];
   export let contentId: string = "";
-
-  // afterUpdate(() => {
-  //   console.log(collections);
-  // });
+  
+  let collectionsOptimistic = collections;
+  $: collectionsOptimistic = collections;
 </script>
 
-<div class="p-1 pt-4">
-  {#each collections as collection, i}
+<div class="p-1 max-h-52 overflow-y-auto" >
+  {#each collectionsOptimistic as collection, i}
     <form
       method="POST"
       action="/api/collection?action={collection.status
@@ -27,12 +25,12 @@
       }}
     >
       <button class="btn btn-sm px-0 text-left w-auto">
-        {collection.name}
         {#if collection.status}
-          <Icon icon="ic:baseline-remove-circle" class="w-8 h-8" />
+        <Icon icon="mdi:checkbox-marked" class="mr-2 w-6 h-6" />
         {:else}
-          <Icon icon="material-symbols:add-box" class="w-8 h-8" />
+        <Icon icon="mdi:checkbox-blank-outline" class="mr-2 w-6 h-6" />
         {/if}
+        {collection.name}
       </button>
     </form>
   {/each}

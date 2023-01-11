@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { CollectionsResponse } from "./types";
   import Icon from "@iconify/svelte";
-  import NotionRelationCard from "$components/NotionRelationCard/NotionRelationCard.svelte";
   const isClient = typeof window !== "undefined";
   export let data: CollectionsResponse;
 
@@ -9,7 +8,8 @@
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Success:", data);
+        console.log(data, i)
+        data.collections.collections = data.collections.collections.splice(i, 1);
       })
       .catch((error) => {
         // console.error("Error:", error);
