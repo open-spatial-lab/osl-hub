@@ -7,9 +7,9 @@
   export let collections: CollectionRowsSchema = [];
   export let contentId: string = "";
 
-  afterUpdate(() => {
-    console.log(collections);
-  });
+  // afterUpdate(() => {
+  //   console.log(collections);
+  // });
 </script>
 
 <div class="p-1 pt-4">

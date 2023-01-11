@@ -106,7 +106,7 @@ class CollectionManager {
           });
         }
         const response = await this.removeCollection();
-        console.log(response.status);
+        // console.log(response.status);
         if (response.status === 200) {
           return json({ response, type: "success" }, { status: 200 });
         }

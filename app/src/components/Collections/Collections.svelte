@@ -26,7 +26,7 @@
   </button>
 </form>
 {#if open}
-<div class="absolute top-0 left-100 bg-surface-700 z-10 text-left shadow-lg rounded-lg p-4 w-auto" style="min-width:8rem">
+<div class="absolute top-0 left-100 bg-surface-700 z-10 text-left shadow-lg rounded-lg p-4 w-auto" style="min-width:16rem">
   <div class="relative w-full h-full">
     <p><b>My collections</b></p>
     <CollectionRows collections={collections} contentId={contentId} />
